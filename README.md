@@ -1,35 +1,33 @@
 [![</> htmx](https://raw.githubusercontent.com/bigskysoftware/htmx/master/www/static/img/htmx_logo.1.png "high power tools for HTML")](https://htmx.org)
 
-*high power tools for HTML*
+*HTML用ハイパワーツール*
 
 [![Discord](https://img.shields.io/discord/725789699527933952)](https://htmx.org/discord)
 [![Netlify](https://img.shields.io/netlify/dba3fc85-d9c9-476a-a35a-e52a632cef78)](https://app.netlify.com/sites/htmx/deploys)
 [![Bundlephobia](https://badgen.net/bundlephobia/dependency-count/htmx.org)](https://bundlephobia.com/result?p=htmx.org)
 [![Bundlephobia](https://badgen.net/bundlephobia/minzip/htmx.org)](https://bundlephobia.com/result?p=htmx.org)
 
-## introduction
+## 導入
 
-htmx allows you to access  [AJAX](https://htmx.org/docs#ajax), [CSS Transitions](https://htmx.org/docs#css_transitions),
-[WebSockets](https://htmx.org/docs#websockets) and [Server Sent Events](https://htmx.org/docs#sse)
-directly in HTML, using [attributes](https://htmx.org/reference#attributes), so you can build
-[modern user interfaces](https://htmx.org/examples) with the [simplicity](https://en.wikipedia.org/wiki/HATEOAS) and
-[power](https://www.ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm) of hypertext
+htmxでは、[AJAX](https://htmx.org/docs#ajax)、[CSS Transitions](https://htmx.org/docs#css_transitions)、[WebSocket](https://htmx.org/docs#websockets)、[Server Sent Events](https://htmx.org/docs#sse)にアクセスできます。
+[属性](https://htmx.org/reference#attributes)を使用して、HTMLで直接アクセスすることができます。
+[モダンなユーザーインターフェース](https://htmx.org/examples)を[シンプルさ](https://en.wikipedia.org/wiki/HATEOAS)と
+ハイパーテキストの[パワー](https://www.ics.uci.edu/~field/pubs/dissertation/rest_arch_style.htm)を使って、[最新のユーザーインターフェイス](https://www.ics.uci.edu/)を構築することができます。
 
-htmx is small ([~14k min.gz'd](https://unpkg.com/htmx.org/dist/)),
-[dependency-free](https://github.com/bigskysoftware/htmx/blob/master/package.json) &
-[extendable](https://htmx.org/extensions)
+htmxは小さく([~14k min.gz'd](https://unpkg.com/htmx.org/dist/))、
+[依存性がなく](https://github.com/bigskysoftware/htmx/blob/master/package.json) &
+[拡張可能](https://htmx.org/extensions)です。
 
-## motivation
+## 動機
 
-* Why should only `<a>` and `<form>` be able to make HTTP requests?
-* Why should only `click` & `submit` events trigger them?
-* Why should only GET & POST be available?
-* Why should you only be able to replace the *entire* screen?
+* なぜ`<a>`と`<form>`だけがHTTPリクエストできるのですか？
+* なぜ`click`と`submit`イベントだけがトリガーになるのですか？
+* なぜ`GET`と`POST`しか使えないのか？
+* なぜ`スクリーン全体を書き換え`しなければならないのですか？
 
-By removing these arbitrary constraints htmx completes HTML as a
-[hypertext](https://en.wikipedia.org/wiki/Hypertext)
+これらの任意の制約を取り除くことで、htmxはHTMLを[ハイパーテキスト](https://en.wikipedia.org/wiki/Hypertext)として完成させます。
 
-## quick start
+## クイックスタート
 
 ```html
   <script src="https://unpkg.com/htmx.org@2.0.0"></script>
@@ -39,70 +37,70 @@ By removing these arbitrary constraints htmx completes HTML as a
   </button>
 ```
 
-The [`hx-post`](https://htmx.org/attributes/hx-post) and [`hx-swap`](https://htmx.org/attributes/hx-swap) attributes tell htmx:
+[`hx-post`](https://htmx.org/attributes/hx-post)と[`hx-swap`](https://htmx.org/attributes/hx-swap) 属性は`htmx`の指示です：
 
-> "When a user clicks on this button, issue an AJAX request to /clicked, and replace the entire button with the response"
+> "ユーザーがこのボタンをクリックしたら、`/clicked`にAJAXリクエストを発行し、ボタン全体をレスポンスに置き換える"
 
-htmx is the successor to [intercooler.js](http://intercoolerjs.org)
+htmxは[intercooler.js](http://intercoolerjs.org)の後継です。
 
-### installing as a node package
+### ノードパッケージとしてインストールする
 
-To install using npm:
+npmを使用してインストールする
 
 ```
 npm install htmx.org --save
 ```
 
-Note there is an old broken package called `htmx`.  This is `htmx.org`.
+Note `htmx`という古い壊れたパッケージがあることに注意してほしい。これは `htmx.org` である。
 
-## website & docs
+## ウェブサイト＆ドキュメント
 
 * <https://htmx.org>
 * <https://htmx.org/docs>
 
-## contributing
-Want to contribute? Check out our [contribution guidelines](CONTRIBUTING.md)
+## 貢献
 
-No time? Then [become a sponsor](https://github.com/sponsors/bigskysoftware#sponsors)
+貢献したいですか？[寄稿ガイドライン](CONTRIBUTING.md)をご覧ください。
 
-### hacking guide
+時間がない？それなら[スポンサーになる](https://github.com/sponsors/bigskysoftware#sponsors)のはどうでしょう？
 
-To develop htmx locally, you will need to install the development dependencies.
+### ハッキングガイド
 
-Run:
+ローカルでhtmxを開発するには、開発依存ファイルをインストールする必要があります。
+
+以下を実行してください:
 
 ```
 npm install
 ```
 
-Then, run a web server in the root.
+次に、ルートでウェブサーバーを実行します。
 
-This is easiest with:
+以下を使うのが最も簡単だ。:
 
 ```
 npx serve
 ```
 
-You can then run the test suite by navigating to:
+テスト・スイートを実行するには、次のページに移動する：
 
 <http://0.0.0.0:3000/test/>
 
-At this point you can modify `/src/htmx.js` to add features, and then add tests in the appropriate area under `/test`.
+この時点で `/src/htmx.js` を修正して機能を追加し、`/test` 以下の適切な領域にテストを追加することができる。
 
-* `/test/index.html` - the root test page from which all other tests are included
-* `/test/attributes` - attribute specific tests
-* `/test/core` - core functionality tests
-* `/test/core/regressions.js` - regression tests
-* `/test/ext` - extension tests
-* `/test/manual` - manual tests that cannot be automated
+* `/test/index.html` - 他のすべてのテストが含まれるルートテストページ
+* `/test/attributes` - 属性別テスト
+* `/test/core` - コア機能テスト
+* `/test/core/regressions.js` - 回帰テスト
+* `/test/ext` - エクステンションテスト
+* `/test/manual` - 自動化できない手動テスト
 
-htmx uses the [mocha](https://mochajs.org/) testing framework, the [chai](https://www.chaijs.com/) assertion framework
-and [sinon](https://sinonjs.org/releases/v9/fake-xhr-and-server/) to mock out AJAX requests.  They are all OK.
+htmxは[mocha](https://mochajs.org/)テストフレームワーク、[chai](https://www.chaijs.com/)アサーションフレームワーク、[sinon](https://sinonjs.org/releases/v9/fake-xhr-and-server/)を使ってAJAXリクエストをモックアウトしています。これらはすべてOKです。
 
-You can also run live tests and demo of the WebSockets and Server-Side Events extensions with `npm run ws-tests`
+`npm run ws-tests` を使えば、WebSockets と Server-Side Events 拡張機能のライブテストとデモを実行することもできる。
 
-## haiku
+## 俳句
 
-*javascript fatigue:<br/>
-longing for a hypertext<br/>
-already in hand*
+面倒も<br/>
+原点回帰も<br/>
+解決だ
