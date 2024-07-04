@@ -2,20 +2,20 @@
 
 ## [2.0.0] - 2024-06-17
 
-* Removed extensions and moved to their own repos linked off of <https://extensions.htmx.org>
-* The website now supports dark mode! (Thanks [@pokonski](https://github.com/pokonski)!)
-* The older, deprecated [SSE & WS](https://v1.htmx.org/docs/#websockets-and-sse) attributes were removed
-* Better support for [Web Components & Shadow DOM](https://htmx.org/examples/web-components/)
-* HTTP `DELETE` requests now use parameters, rather than form encoded bodies, for their payload (This is in accordance w/ the spec.)
-* Module support was split into different files:
-* We now provide specific files in `/dist` for the various JavaScript module styles:
+* エクステンションを削除し、<https://extensions.htmx.org>からリンクされた独自のリポジトリに移動した。
+* ウェブサイトがダークモードに対応しました！(ありがとう！[@pokonski](https://github.com/pokonski))
+* 古い非推奨の[SSE & WS](https://v1.htmx.org/docs/#websockets-and-sse)属性は削除された。
+* [ウェブ・コンポーネントとシャドウDOM](https://htmx.org/examples/web-components/)のサポート向上
+* HTTP `DELETE`リクエストのペイロードに、フォームエンコードされたボディではなく、パラメータを使うようになった（これは仕様に従っている）。
+* モジュール・サポートは異なるファイルに分割された：
+* 様々なJavaScriptモジュールのスタイルについて、`/dist`に特定のファイルを提供するようになった：
   * ESM Modules: `/dist/htmx.esm.js`
   * AMD Modules: `/dist/htmx.amd.js`
   * CJS Modules: `/dist/htmx.cjs.js`
-  * The `/dist/htmx.js` file continues to be browser-loadable
-* The `hx-on` attribute, with its special syntax, has been removed in favor of the less-hacky `hx-on:` syntax.
-* See the [Upgrade Guide](https://htmx.org/migration-guide-htmx-1/) for more details on upgrade steps
-* The `selectAndSwap()` internal API method was replaced with the public (and much better) [`swap()`](/api/#swap) method
+  * `dist/htmx.js`ファイルは引き続きブラウザからロード可能です。
+* 特殊な構文を持つ `hx-on` 属性は削除され、より扱いにくい `hx-on:` 構文が採用された。
+* アップグレード手順の詳細については、[アップグレードガイド](https://htmx.org/migration-guide-htmx-1/) を参照してください。
+* 内部APIメソッド `selectAndSwap()` は、パブリックな（そしてはるかに優れた） [`swap()`](/api/#swap) メソッドに置き換えられました。
 
 ## [1.9.12] - 2024-04-17
 
@@ -23,480 +23,417 @@
 
 ## [1.9.11] - 2024-03-15
 
-* Fix for new issue w/ web sockets & SSE on iOS 17.4 (thanks apple!)
-* Fix for double script execution issue when using template parsing
-* Fix TypeScript types file
-* Fix SSE Ext: reinstantiate EventSource listeners upon reconnection logic (#2272)
+* iOS 17.4におけるウェブソケットとSSEに関する新しい問題を修正しました。
+* テンプレート解析の使用時にスクリプトが二重に実行されることがあった問題を修正
+* TypeScriptの型ファイルを修正
+* SSE Ext: 再接続ロジックでEventSourceリスナーを再定義するように修正 (#2272)
     
 ## [1.9.10] - 2023-12-21
 
-* `hx-on*` attributes now support the form `hx-on-`, with a trailing dash, to better support template systems (such as EJS)
-  that do not like double colons in HTML attributes.
-* Added an `htmx.config.triggerSpecsCache` configuration property that can be set to an object to cache the trigger spec parsing
-* Added a `path-params.js` extension for populating request paths with variable values
-* Many smaller bug fixes & improvements
+* `hx-on*`属性が、末尾にダッシュを付けた`hx-on-`という形式をサポートするようになり、HTML属性のダブルコロンが嫌いなテンプレートシステム（EJSなど）に対応しやすくなりました。
+* トリガースペックの解析をキャッシュするオブジェクトを設定できる `htmx.config.triggerSpecsCache` 設定プロパティを追加しました。
+* リクエスト・パスに変数値を設定するための `path-params.js` 拡張モジュールを追加した。
+* 多くの小さなバグ修正と改善
 
 ## [1.9.9] - 2023-11-21
 
-* Allow CSS selectors with whitespace in attributes like `hx-target` by using parens or curly-braces
-* Properly allow users to override the `Content-Type` request header
-* Added the `select` option to `htmx.ajax()`
-* Fixed a race condition in readystate detection that lead to htmx not being initialized in some scenarios with 3rd
-  party script loaders
-* Fixed a bug that caused relative resources to resolve against the wrong base URL when a new URL is pushed
-* Fixed a UI issue that could cause indicators to briefly flash
+* `hx-target`のような括弧または中括弧の使用した属性に空白を含むCSSセレクタを許可する。
+* ユーザーが `Content-Type` リクエストヘッダを上書きできるようにする。
+* `htmx.ajax()` に `select` オプションを追加した。
+* サードパーティ製スクリプトローダーを使用したいくつかのシナリオで、htmxが初期化されない原因となっていたreadystate検出の競合状態を修正。
+* 新しいURLがプッシュされた際に、相対リソースが誤ったベースURLに対して解決される原因となっていたバグを修正。
+* インジケータが短時間点滅することがあったUIの問題を修正
 
 ## [1.9.8] - 2023-11-06
 
-* Fixed a few npm & build related issues
+* npmとビルドに関するいくつかの問題を修正した。
 
 ## [1.9.7] - 2023-11-03
 
-* Fixed a bug where a button associated with a form that is swapped out of the DOM caused errors
-* The `hx-target-error` attribute was added to the `response-targets` extension, allowing you to capture all 400 & 500
-  responses with a single attribute
-* `hx-on` now properly supports multiple listeners
-* The `hx-confirm` prompt is now passed into custom confirmation handlers
-* `next` and `previous` are now valid _extended CSS_ symbols in htmx
-* The `htmx:beforeHistoryUpdate` event was added
-* Properly ignore the `dialog` formmethod on buttons when resolving the HTTP method to use
-* Added a `htmx.config.scrollIntoViewOnBoost` option that may be set to `false` to disable scrolling the top of the
-  body into view for boosted elements
+* DOMから入れ替わったフォームに関連するボタンがエラーを引き起こすバグを修正。
+* `hx-target-error`属性が `response-targets` 拡張モジュールに追加されました。400件および500件すべての回答を1つの属性でキャプチャできます。
+* `hx-on` が複数のリスナーを適切にサポートするようになった。
+* `hx-confirm` プロンプトがカスタム確認ハンドラに渡されるようになりました。
+* htmxで `next` と `previous` が有効な _extended CSS_ シンボルになった。
+* `htmx:beforeHistoryUpdate` イベントが追加された。
+* 使用する HTTP メソッドを解決する際に、ボタンの `dialog` formmethod を適切に無視する。
+* `htmx.config.scrollIntoViewOnBoost`オプションを追加し、`false`に設定することで、ブーストされた要素のボディ上部のスクロールを無効にすることができる。
 
 ## [1.9.6] - 2023-09-22
 
-* IE support has been restored (thank you @telroshan!)
-* Introduced the `hx-disabled-elt` attribute to allow specifying elements to disable during a request
-* You can now explicitly decide to ignore `title` tags found in new content via the `ignoreTitle` option in `hx-swap` and the `htmx.config.ignoreTitle` configuration variable.
-* `hx-swap` modifiers may be used without explicitly specifying the swap mechanism
-* Arrays are now supported in the `client-side-templates` extension
-* XSLT support in the `client-side-templates` extension
-* Support `preventDefault()` in extension event handling
-* Allow the `HX-Refresh` header to apply even after an `HX-Redirect` has occurred
-* the `formaction` and `formmethod` attributes on buttons are now properly respected
-* `hx-on` can now handle events with dots in their name
-* `htmx.ajax()` now always returns a Promise
-* Handle leading `style` tag parsing more effectively
+* IEのサポートが回復しました。(ありがとう！@telroshan)
+* リクエスト中に無効にする要素を指定できる `hx-disabled-elt` 属性を導入した。
+* `hx-swap`の `ignoreTitle` オプションと `htmx.config.ignoreTitle` 設定変数によって、新しいコンテンツで見つかった `title` タグを無視することを明示的に決定できるようになりました。
+* `hx-swap` 修飾子は、スワップ機構を明示的に指定しなくても使うことができる。
+* `client-side-templates`拡張機能で配列がサポートされるようになった。
+* 拡張機能 `client-side-templates` における XSLT サポート
+* 拡張機能のイベント処理で `preventDefault()` をサポートする。
+* `HX-Redirect`が発生した後でも`HX-Refresh`ヘッダーを適用できるようにする。
+* ボタンの `formaction` 属性と `formmethod` 属性が適切に考慮されるようになりました。
+* `hx-on` が名前にドットを含むイベントを扱えるようになった。
+* `htmx.ajax()` が常に Promise を返すようになった。
+* 先行する `style` タグの解析をより効果的に処理する。
 
 ## [1.9.5] - 2023-08-25
 
-* Web sockets now properly pass the target id in the HEADERS struct
-* A very rare loading state bug was fixed (see https://github.com/bigskysoftware/htmx/commit/93bd81b6d003bb7bc445f10192bdb8089fa3495d)
-* `hx-on` will not evaluate if `allowEval` is set to false
-* You can disable the interpretation of script tags with the new `htmx.config.allowScriptTags` config variable
-* You can now disable htmx-based requests to non-origin hosts via the `htmx.config.selfRequestsOnly` config variable
-* The [Security](https://htmx.org/docs#security) section has been expanded to help developers better understand how to
-  properly secure their htmx-based applications.
+* WebソケットがHEADERS構造体にターゲットIDを適切に渡すようになった。
+* 非常にまれなロード状態のバグが修正された (https://github.com/bigskysoftware/htmx/commit/93bd81b6d003bb7bc445f10192bdb8089fa3495d を参照)。
+* `allowEval`がfalseに設定されている場合、`hx-on`は評価されない。
+* スクリプトタグの解釈を無効にするには、新しい設定変数 `htmx.config.allowScriptTags` を使用します。
+* `htmx.config.selfRequestsOnly`設定変数を使って、オリジンでないホストへのhtmxベースのリクエストを無効にできるようになりました。
+* [セキュリティ](https://htmx.org/docs#security)のセクションが拡張され、htmxベースのアプリケーションを適切に保護する方法を開発者がより理解できるようになりました。
 
 ## [1.9.4] - 2023-07-25
 
-* This is a bug-fix release for the most part, w/a heavy dose of @telroshan
-* The `HX-Trigger` response header now supports comma separated event names
-* Submit buttons that use the `form` attribute now work correctly
-* The `changed` modifier now uses the triggering element, rather than the element the `hx-trigger` is defined on
-* `hx-disable` is now handled dynamically so it can be added and removed
-* IE11 compatibility restored! (maybe, hard to test)
-* Fixed bug with `hx-on` event handler cleanup
-* Many smaller bug fixes, typo fixes and general improvements
+* 今回のリリースはバグフィックスが中心で、@telroshanが大量に含まれている。
+* `HX-Trigger` レスポンスヘッダがカンマ区切りのイベント名をサポートするようになりました。
+* `form`属性を使用した送信ボタンが正しく動作するようになりました。
+* `changed` モディファイアは `hx-trigger` が定義されている要素ではなく、トリガーとなる要素を使用するようになりました。
+* `hx-disable` は動的に処理されるようになったので、追加したり削除したりできる。
+* IE11の互換性が回復した！(多分、テストは難しい)
+* イベントハンドラ `hx-on` のクリーンアップに関するバグを修正した。
+* 多くの小さなバグ修正、誤字の修正、全般的な改善
 
 ## [1.9.3] - 2023-07-14
 
-* The `hx-on` attribute has been deprecated (sorry) in favor of `hx-on:<event name>` attributes.  See [`hx-on`](/attributes/hx-on) for more information.
-* We now have functioning CI using GitHub actions!
-* You can now configure if a type of HTTP request uses the body for parameters or not.  In particular, the `DELETE` _should_ use
-  query parameters, according to the spec.  htmx has used the body, instead.  To avoid breaking code we are keeping this undefined
-  behavior for now, but allowing people to fix it for their use cases by updating the `htmx.config.methodsThatUseUrlParams` config
-  option.  Thank you to Alex and Vincent for their feedback and work on this issue!
-* The `this` symbol is now available in event filter expressions, and refers to the element the `hx-trigger` is on
-* Fix bug where the `htmx:afterSettle` event was raised multiple times with oob swaps occurred
-* A large number of accessibility fixes were made in the docs (Thank you Denis & crew!)
-* Fixed bug w/ WebSocket extension initialization caused by "naked" `hx-trigger` feature
-* The `HX-Reselect` HTTP response header has been added to change the selection from the returned content
-* Many other smaller bug fixes
+* `hx-on`属性は廃止され、`hx-on:<イベント名>`属性が使われるようになりました。  詳しくは [`hx-on`](/attributes/hx-on) を参照してください。
+* これでGitHubのアクションを使ったCIが機能するようになった！
+* HTTP リクエストのタイプがパラメータに body を使うかどうかを設定できるようになった。特に `DELETE` は仕様によると、クエリパラメータを使うべきです。コードを壊さないようにするため、今のところこの未定義の挙動を維持していますが、`htmx.config.methodsThatUseUrlParams`設定オプションを更新することで、使用するケースに合わせて修正できるようにしています。AlexとVincentに感謝します！
+* `this`シンボルがイベントフィルター式で使用できるようになり、`hx-trigger`がかかっている要素を指すようになった。
+* oob のスワップが発生したときに `htmx:afterSettle` イベントが複数回発生するバグを修正した。
+* ドキュメントのアクセシビリティを大幅に修正した（Denis & crewに感謝！）。
+* 裸の"`hx-trigger`機能によるWebSocket拡張の初期化のバグを修正した。
+* HTTP レスポンスヘッダ `HX-Reselect` が追加され、返されたコンテンツから選択を変更できるようになった。
+* その他多くの小さなバグ修正
 
 ## [1.9.2] - 2023-04-28
 
-* Fixed bug w/ `hx-on` not properly de-initializing
+* `hx-on`が正しく初期化されないバグを修正。
 
 ## [1.9.1] - 2023-04-27
 
-* Fixed a bug with the new naked triggers that prevented boosted elements with explicit `hx-trigger`'s from functioning
-  properly
-* Added code to play well with other libraries that also use the `window.onpopstate` Daily reminder: <https://htmx.org/img/memes/javascripthistory.png>
+* 新しいネイキッド・トリガーで、明示的に `hx-trigger` を指定したブースト・エレメントが正しく機能しないバグを修正。
+* デイリーリマインダーの `window.onpopstate` を使用する他のライブラリとうまく動作するようにコードを追加した：<https://htmx.org/img/memes/javascripthistory.png>
 
 ## [1.9.0] - 2023-04-11
 
-* Support for generalized inline event handling via the new [`hx-on`](/attributes/hx-on) attribute, which addresses
-  the shortcoming of limited [`onevent` properties](https://developer.mozilla.org/en-US/docs/Web/Events/Event_handlers#using_onevent_properties) attributes in HTML.
-* Support for [view transitions](/docs#view-transitions), based on the experimental [View Transitions API](https://developer.mozilla.org/en-US/docs/Web/API/View_Transitions_API)
-  currently available in Chrome 111+ and coming to other browsers soon.
-* Support for "naked" [`hx-trigger`](/attributes/hx-trigger) attributes, where an `hx-trigger` is present on an element
-  that does not have an `hx-get`, etc. defined on it.  Instead, it will trigger the new `htmx:triggered` event, which can
-  be responded to via your [preferred scripting solution](/docs#scripting).
-* A memory leak fix by [@croxton](https://github.com/bigskysoftware/htmx/commit/8cd3a480a7388877628ce8b9b8e50cd5df48bb81)
-* The htmx website has been migrated from 11ty to [zola](https://www.getzola.org/) by [@danieljsummers](https://github.com/danieljsummers), cutting
-  way down on the number of "development" javascript dependencies
-* Many other smaller bug fixes
+* 新しい[`hx-on`](/attributes/hx-on)属性による一般化されたインライン・イベント処理のサポートは、HTMLにおける限られた[`onevent` properties](https://developer.mozilla.org/en-US/docs/Web/Events/Event_handlers#using_onevent_properties)属性の欠点に対処します。
+* [ビュー遷移](/docs#view-transitions)のサポート。実験的な[View Transitions API](https://developer.mozilla.org/en-US/docs/Web/API/View_Transitions_API)に基づいており、現在Chrome 111+で利用可能で、近日中に他のブラウザでも利用可能になります。
+* `hx-get`などが定義されていない要素に `hx-trigger` が存在する場合、"裸の" [`hx-trigger`](/attributes/hx-trigger) 属性をサポートします。  その代わりに、新しい `htmx:triggered` イベントがトリガーされ、[好みのスクリプティングソリューション](/docs#scripting) を使って応答することができます。
+* メモリリークの修正 by [@croxton](https://github.com/bigskysoftware/htmx/commit/8cd3a480a7388877628ce8b9b8e50cd5df48bb81)
+* htmxのウェブサイトは、[@danieljsummers](https://github.com/danieljsummers)によって11tyから[zola](https://www.getzola.org/)に移行され、"開発 "用javascriptの依存関係が大幅に削減された。
+* その他多くの小さなバグ修正
 
 ## [1.8.6] - 2023-03-02
 
-* ESM support!
-* Sass has been vanquished from the htmx.org website, which should set us up for some good progress going forward
-* Fixed a bug where the `changed` modifier on `keyup` did not work properly if an input was tabbed into
-* Many other smaller bug fixes and doc fixes
+* ESMのサポート！
+* htmx.orgのウェブサイトからSassが駆逐された。その結果、今後の進展が期待できる。
+* 入力がタブ化されている場合、`keyup` の `changed` 修飾子が正しく動作しないバグを修正した。
+* その他多くの小さなバグ修正とドキュメント修正
 
 ## [1.8.5] - 2023-01-17
 
-* Support a new optional cache-busting configuration option, `getCacheBusterParam`, to allow browsers to disambiguate
-  between `GET` requests from htmx and from the raw browser
-* Support new `hx-history='false'` attribute, to prevent sensitive data from being stored in the history cache. (Thank you @croxton!)
-* Extensive new event-oriented features are available in the [Web Socket](/extensions/web-sockets/) extension (Thank you @Renerick!)
-* A bug fix for when a form contains multiple empty input values with the same name (Thank you @bluekeyes!)
-* A bug fix around inputs that throw exceptions when calling `setSelectionRange()` (Thank you @gone!)
-* A bug fix to pass through the proper event for the `htmx:configRequest` event
-* A bug fix/improvement for the `preload` extension
-* Many other small bug fixes 
+* 新しいオプションのキャッシュバスター設定オプション `getCacheBusterParam` をサポートし、ブラウザが htmx からの `GET` リクエストと生のブラウザからの `GET` リクエストを区別できないようにする。
+* `hx-history='false'`属性をサポートし、機密データが履歴キャッシュに保存されないようにしました。(ありがとうございます。)
+* [Web Socket](/extensions/web-sockets/)エクステンションでは、イベント指向の新機能が豊富に用意されている（@Renerick氏に感謝！）。
+* フォームに同じ名前の空の入力値が複数ある場合のバグ修正 (@bluekeyes さん、ありがとうございます！)
+* `setSelectionRange()`を呼び出したときに例外がスローされる入力に関するバグを修正した。
+* `htmx:configRequest`イベントに適切なイベントを渡すようにバグ修正した。
+* 拡張機能 `preload` のバグ修正と改善
+* その他多くの小さなバグ修正 
 
 ## [1.8.4] - 2022-11-05
 
-* Fix the _exact same_ regression in `revealed` logic as in 1.8.2 
+* 1.8.2と全く同じ `revealed` ロジックのリグレッションを修正。 
 
 ## [1.8.3] - 2022-11-04
 
-* A new [`htmx:confirm` event](/events#htmx:confirm) was added that allows for asynchronous confirmation dialogs to 
-  be integrated into htmx requests
-* The new [head-support](/extensions/head-support) extension allows for more elaborate head tag merging than standard htmx
-  supports.  This functionality may be integrated into htmx 2.0, depending on feedback.
-* The new [multi-swap](/extensions/multi-swap) provides more elaborate swapping of multiple elements on a screen using
-  a custom swap strategy
-* Many doc fixes (thank you to everyone who contributed!)
+* 新しい [`htmx:confirm` イベント](/events#htmx:confirm) が追加され、非同期の確認ダイアログを htmx リクエストに統合できるようになりました。
+* 新しい[head-support](/extensions/head-support)エクステンションは、標準のhtmxがサポートするよりも精巧なheadタグの結合を可能にします。  この機能はフィードバック次第で htmx 2.0 に統合されるかもしれません。
+* 新しい[multi-swap](/extensions/multi-swap)は、カスタムスワップ戦略を使って、スクリーン上の複数の要素をより精巧にスワップします。
+* 多くのドキュメント修正（貢献してくれたみんなに感謝！）。
 
 ## [1.8.2] - 2022-10-12
 
-* Fix regression in `revealed` logic
+* `revealed`ロジックの回帰を修正した。
 
 ## [1.8.1] - 2022-10-11
 
-* We now keep a count of outstanding requests for an indicator, so more than one overlapping request can share the same
-  indicator without issues
-* We now track the attribute state of an element and re-initialize it if `htmx.process()` is called on the element and
-  the attributes have changed
-* [Idiomorph](https://github.com/bigskysoftware/idiomorph) is now available for all your morph-swapping needs
-* The `unset` directive now works properly for `hx-vals` and `hx-vars`
-* The title of the page is now properly set on a history cache miss
-* The new [`hx-validate`](https://htmx.org/attributes/hx-validate) attribute will force elements to validate before a request, even if
-  they are not within a form being submitted
-* Many smaller bug and docs fixes
+* インジケーターに対する未処理のリクエスト数を保持するようになったので、複数の重複したリクエストが問題なく同じインジケーターを共有できるようになりました。
+* 要素の属性の状態を追跡し、`htmx.process()`が要素上で呼ばれて属性が変更された場合に再初期化するようにしました。
+* [イディオモーフ](https://github.com/bigskysoftware/idiomorph)は、モーフ交換のあらゆるニーズに対応できるようになりました。
+* `unset` ディレクティブが `hx-vals` と `hx-vars` に対して正しく動作するようになった。
+* 履歴キャッシュが削除された場合、ページのタイトルが正しく設定されるようになりました。
+* 新しい[`hx-validate`](https://htmx.org/attributes/hx-validate)属性は、リクエストが送信されるフォーム内にない場合でも、リクエストの前に要素のバリデーションを強制します。
+* 多くの小さなバグとドキュメントの修正
 
 ## [1.8.0] - 2022-7-12
 
-* **NOTE**: This release involved some changes to touchy code (e.g. history support) so please test thoroughly and let
-  us know if you see any issues
-* Boosted forms now will automatically push URLs into history as with links.  The [response URL](https://caniuse.com/mdn-api_xmlhttprequest_responseurl) 
-  detection API support is good enough that we feel comfortable making this the default now. 
-  * If you do not want this behavior you can add `hx-push-url='false'` to your boosted forms
-* The [`hx-replace-url`](https://htmx.org/attributes/hx-replace-url) attribute was introduced, allowing you to replace
-  the current URL in history (to complement `hx-push-url`)
-* Bug fix - if htmx is included in a page more than once, we do not process elements multiple times
-* Bug fix - When localStorage is not available we do not attempt to save history in it
-* [Bug fix](https://github.com/bigskysoftware/htmx/issues/908) - `hx-boost` respects the `enctype` attribute
-* `m` is now a valid timing modifier (e.g. `hx-trigger="every 2m"`)
-* `next` and `previous` are now valid extended query selector modifiers, e.g. `hx-target="next div"` will target the
-  next div from the current element
-* Bug fix - `hx-boost` will boost anchor tags with a `_self` target
-* The `load` event now properly supports event filters
-* The websocket extension has had many improvements: (A huge thank you to Denis Palashevskii, our newest committer on the project!)
-  * Implement proper `hx-trigger` support
-  * Expose trigger handling API to extensions
-  * Implement safe message sending with sending queue
-  * Fix `ws-send` attributes connecting in new elements
-  * Fix OOB swapping of multiple elements in response
-* The `HX-Location` response header now implements client-side redirects entirely within htmx
-* The `HX-Reswap` response header allows you to change the swap behavior of htmx
-* The new [`hx-select-oob`](https://htmx.org/attributes/hx-select-oob) attribute selects one or more elements from a server response to swap in via an out of band swap
-* The new [`hx-replace-url`](https://htmx.org/attributes/hx-replace-url) attribute can be used to replace the current URL in the location 
-  bar (very similar to `hx-push-url` but no new history entry is created).  The corresponding `HX-Replace-Url` response header can be used as well.
-* htmx now properly handles anchors in both boosted links, as well as in `hx-get`, etc. attributes
+* **NOTE**: このリリースでは、微妙なコード（ヒストリーのサポートなど）が変更されています。ですから、十分にテストし、問題があればお知らせください。
+* ブーストされたフォームは、リンクと同様に URL を履歴に自動的にプッシュするようになりました。[レスポンスURL](https://caniuse.com/mdn-api_xmlhttprequest_responseurl)検出APIのサポートは十分に優れているため、現在はこれをデフォルトにしています。
+  * この動作を望まない場合は、ブーストされたフォームに `hx-push-url='false'` を追加してください。
+* [hx-replace-url`](https://htmx.org/attributes/hx-replace-url) 属性が導入され、履歴の現在の URL を置き換えることができるようになりました (`hx-push-url` を補完するため)。
+* バグ修正 - htmxがページに複数回含まれる場合、要素を複数回処理しない。
+* バグ修正 - localStorageが利用できない場合、履歴を保存しようとしない。
+* [バグ修正](https://github.com/bigskysoftware/htmx/issues/908) - `hx-boost` は `enctype` 属性を尊重する。
+* `m`が有効なタイミング修飾子になった（例：`hx-trigger="2m毎"`）。
+* `next` と `previous` が有効な拡張クエリセレクタ修飾子になった、例えば、`hx-target="next div"` は現在の要素から次の div をターゲットにします。
+* バグ修正 - `hx-boost` が `_self` をターゲットとするアンカータグをブーストしてしまうバグを修正した。
+* `load` イベントが適切にイベントフィルターをサポートするようになった。
+* ウェブソケット・エクステンションには多くの改良が加えられた：(Denis Palashevskiiに感謝します。このプロジェクトで最も新しいコミッターです！)
+  * 適切な `hx-trigger` サポートの実装
+  * トリガー処理APIを拡張機能に公開
+  * 送信キューによる安全なメッセージ送信の実装
+  * 新しい要素で `ws-send` 属性が接続されるのを修正した。
+  * レスポンスにおける複数要素のOOBスワッピングを修正
+* `HX-Location` レスポンスヘッダは、クライアントサイドのリダイレクトを完全に htmx 内で実装するようになった。
+* `HX-Reswap`レスポンスヘッダは、htmxのスワップ動作を変更することができる。
+* 新しい[`hx-select-oob`](https://htmx.org/attributes/hx-select-oob)属性は、サーバーのレスポンスから1つ以上の要素を選択し、帯域外スワップでスワップします。
+* 新しい [`hx-replace-url`](https://htmx.org/attributes/hx-replace-url) 属性を使用すると、ロケーションバーの現在の URL を置き換えることができます (`hx-push-url` に非常に似ていますが、新しい履歴エントリは作成されません)。  対応する `HX-Replace-Url` レスポンスヘッダも使用できます。
+* htmxは、ブーストされたリンクや`hx-get`属性などのアンカーを適切に処理するようになった。
 
 ## [1.7.0] - 2022-02-22
 
-* The new [`hx-sync`](https://htmx.org/attributes/hx-sync) attribute allows you to synchronize multiple element requests on a single
-  element using various strategies (e.g. replace)
-  * You can also now abort an element making a request by sending it the `htmx:abort` event
-* [Server Sent Events](/extensions/server-sent-events) and [Web Sockets](/extensions/web-sockets) are now available as 
-  extensions, in addition to the normal core support.  In htmx 2.0, the current `hx-sse` and `hx-ws` attributes will be
-  moved entirely out to these new extensions.  By moving these features to extensions we will be able to add functionality 
-  to both of them without compromising the core file size of htmx.  You are encouraged to move over to the new 
-  extensions, but `hx-sse` and `hx-ws` will continue to work indefinitely in htmx 1.x.
-* You can now mask out [attribute inheritance](/docs#inheritance) via the [`hx-disinherit`](https://htmx.org/attributes/hx-disinherit) attribute.
-* The `HX-Push` header can now have the `false` value, which will prevent a history snapshot from occurring.
-* Many new extensions, with a big thanks to all the contributors!
-    * A new [`alpine-morph`](/extensions/alpine-morph) allows you to use Alpine's swapping engine, which preserves Alpine
-    * A [restored](/extensions/restored) extension was added that will trigger a `restore` event on all elements in the DOM
-      on history restoration.
-    * A [loading-states](/extensions/loading-states) extension was added that allows you to easily manage loading states
-      while a request is in flight, including disabling elements, and adding and removing CSS classes. 
-* The `this` symbol now resolves properly for the [`hx-include`](https://htmx.org/attributes/hx-include) and [`hx-indicator`](https://htmx.org/attributes/hx-indicator)
-  attributes
-* When an object is included via the [`hx-vals`](https://htmx.org/attributes/hx-vals) attribute, it will be converted to JSON (rather 
-  than rendering as the string `[Object object]"`)
-* You can now pass a swap style in to the `htmx.ajax()` function call.
-* Poll events now contain a `target` attribute, allowing you to filter a poll on the element that is polling.
-* Two new Out Of Band-related events were added: `htmx:oobBeforeSwap` & `htmx:oobAfterSwap`
+* 新しい[`hx-sync`](https://htmx.org/attributes/hx-sync)属性は、様々なストラテジー(例えばreplace)を使って、1つのエレメントに対して複数のエレメントリクエストを同期させることができます。
+  * また、`htmx:abort` イベントを送信することで、リクエストを行っているエレメントを中止できるようになりました。
+* [サーバー送信イベント](/extensions/server-sent-events) と [ウェブソケット](/extensions/web-sockets) が、通常のコアサポートに加えて、拡張機能として利用可能になりました。htmx 2.0 では、現在の `hx-sse` と `hx-ws` 属性はこれらの新しい拡張機能に完全に移行されます。これらの機能を拡張機能に移行することで、htmxのコアファイルサイズを損なうことなく、両方の機能を追加できるようになります。新しい拡張機能に移行することをお勧めしますが、`hx-sse` と `hx-ws` は htmx 1.x で無期限に動作し続けます。
+* [属性継承](/docs#inheritance)を[`hx-disinherit`](https://htmx.org/attributes/hx-disinherit)属性でマスクできるようになりました。
+* `HX-Push` ヘッダーに `false` 値を指定できるようになり、履歴スナップショットが発生しなくなった。
+* 多くの新しいエクステンション、そしてすべての貢献者に感謝する！
+  * 新しい[`alpine-morph`](/extensions/alpine-morph)により、アルパインのスワッピングエンジンを使うことができます。
+  * [restored](/extensions/restored)エクステンションが追加され、履歴の復元時にDOM内のすべての要素に対して`restore`イベントをトリガーするようになった。
+  * [loading-states](/extensions/loading-states)エクステンションが追加され、要素の無効化やCSSクラスの追加・削除など、リクエスト実行中のロード状態を簡単に管理できるようになりました。
+* [hx-include`](https://htmx.org/attributes/hx-include) と [`hx-indicator`](https://htmx.org/attributes/hx-indicator) 属性で `this` シンボルが正しく解決されるようになりました。
+* オブジェクトが[`hx-vals`](https://htmx.org/attributes/hx-vals)属性でインクルードされると、JSONに変換されます（文字列 `[Object object]"` としてレンダリングされるのではありません）。
+* `htmx.ajax()`関数呼び出しにスワップ・スタイルを渡せるようになりました。
+* ポーリングイベントに `target` 属性が追加され、ポーリングする要素でポーリングをフィルタリングできるようになりました。
+* 帯域外関連の新しいイベントが2つ追加された：`htmx:oobBeforeSwap`と`htmx:oobAfterSwap`。
 
 ## [1.6.1] - 2021-11-22
 
-* A new `HX-Retarget` header allows you to change the default target of returned content
-* The `htmx:beforeSwap` event now includes another configurable property: `detail.isError` which can
-  be used to indicate if a given response should be treated as an error or not
-* The `htmx:afterRequest` event has two new detail properties: `success` and `failed`, allowing you to write 
-  trigger filters in htmx or hyperscript:
+* 新しい `HX-Retarget` ヘッダーにより、返されるコンテンツのデフォルトターゲットを変更することができます。
+* `htmx:beforeSwap` イベントには、設定可能なプロパティが追加された：detail.isError`は、指定されたレスポンスをエラーとして扱うかどうかを指定するために使用することができます。
+* `htmx:afterRequest`イベントに2つの新しい詳細プロパティが追加された: `success` と `failed` で、htmx や hyperscript でトリガーフィルタを書くことができる：
   ```applescript
     on htmx:afterRequest[failed]
       set #myCheckbox's checked to true
   ```
-* Fixed the `from:` option in [`hx-trigger`](https://htmx.org/attributes/hx-trigger) to support `closest <CSS selector>` 
-  and `find <CSS selector>` forms
-* Don't boost anchor tags with an explicit `target` set
-* Don't cancel all events on boosted elements, only the events that naturally trigger them (click for anchors, submit
-  for forms)
-* Persist revealed state in the DOM so that on history navigation, revealed elements are not re-requested
-* Process all [`hx-ext`](https://htmx.org/attributes/hx-ext) attributes, even if no other htmx attribute is on the element
-* Snapshot the current URL on load so that history support works properly after a page refresh occurs
-* Many, many documentation updates (thank you to all the contributors!)
+* [hx-trigger`](https://htmx.org/attributes/hx-trigger) の `from:` オプションを修正し、`closest <CSS selector>` と `find <CSS selector>` フォームをサポートするようにした。
+* 明示的に`target`を設定したアンカータグをブーストしない。
+* ブーストされた要素のすべてのイベントをキャンセルせず、自然にトリガーされるイベントのみをキャンセルする（アンカーのクリック、フォームの送信）。
+* ヒストリーナビゲーションで、明らかにされた要素が再要求されないように、明らかにされた状態をDOMに保持する。
+* 要素に他の htmx 属性がない場合でも、すべての [`hx-ext`](https://htmx.org/attributes/hx-ext) 属性を処理する。
+* ロード時に現在のURLをスナップショットし、ページ更新後に履歴サポートが適切に機能するようにする。
+* 多くのドキュメントの更新（すべての貢献者に感謝します）
 
 
 ## [1.6.0] - 2021-10-01
 
-* Completely reworked `<script>` tag support that now supports the `<script src="...'/>` form
-* You can now use the value `unset` to clear a property that would normally be inherited (e.g. hx-confirm)
-* The `htmx-added` class is added to new content before a swap and removed after the settle phase, which allows you
-  more flexibility in writing CSS transitions for added content (rather than relying on the target, as with `htmx-settling`)
-* The `htmx:beforeSwap` event has been updated to allow you to [configure swapping](https://htmx.org/docs/#modifying_swapping_behavior_with_events)
-  behavior
-* Improved `<title>` extraction support
-* You can listen to events on the `window` object using the `from:` modifier in `hx-trigger`
-* The `root` option of the `intersect` event was fixed
-* Boosted forms respect the `enctype` declaration
-* The `HX-Boosted` header will be sent on requests from boosted elements
-* Promises are not returned from the main ajax function unless it is an api call (i.e. `htmx.ajax`)
+* `<script>`タグのサポートを完全に見直し、`<script src="...'/>` フォームをサポートするようになった。
+* `unset`という値を使って、通常継承されるプロパティをクリアできるようになりました（例：hx-confirm）。
+* `htmx-added`クラスはスワップ前に新しいコンテンツに追加され、セトリングフェーズの後に削除される。これは、追加されたコンテンツの CSS トランジションをより柔軟に書くことができます（`htmx-settling` のようにターゲットに依存するのではなく）。
+* `htmx:beforeSwap`イベントが更新され、[swapping](https://htmx.org/docs/#modifying_swapping_behavior_with_events) の動作を設定できるようになりました。
+* `<title>`抽出サポートの改善
+* `hx-trigger` の `from:` モディファイアを使うと、`window` オブジェクトのイベントをリッスンすることができます。
+* `intersect`イベントの`root`オプションが修正された。
+* ブーストされたフォームは `enctype` 宣言を尊重する。
+* `HX-Boosted` ヘッダは boosted 要素からのリクエストに送られます。
+* プロミスは、APIコール（すなわち`htmx.ajax`）でない限り、メインのajax関数から返されません。
 
 ## [1.5.0] - 2021-7-12
 
-* Support tracking of button clicked during a form submission
-* Conditional polling via the [hx-trigger](https://htmx.org/attributes/hx-trigger) attribute
-* `document` is now a valid pseudo-selector on the [hx-trigger](https://htmx.org/attributes/hx-trigger) `from:` argument, allowing you
-  to listen for events on the document.
-* Added the [hx-request](https://htmx.org/attributes/hx-request) attribute, allowing you to configure the following aspects of the request
-    * `timeout` - the timeout of the request
-    * `credentials` - if the request will send credentials
-    * `noHeaders` - strips all headers from the request
-* Along with the above attribute, you can configure the default values for each of these via the corresponding `htmx.config`
-  properties (e.g. `htmx.config.timeout`)
-* Both the `scroll` and `show` options on [hx-swap](https://htmx.org/attributes/hx-swap) now support extended syntax for selecting the
-  element to scroll or to show, including the pseudo-selectors `window:top` and `window:bottom`.
+* フォーム送信中にクリックされたボタンのトラッキングをサポートする。
+* [hx-trigger](https://htmx.org/attributes/hx-trigger)属性による条件付きポーリング
+* [hx-trigger](https://htmx.org/attributes/hx-trigger)の `from:` 引数で `document` が有効な擬似セレクタになり、ドキュメント上のイベントをリッスンできるようになりました。
+* [hx-request](https://htmx.org/attributes/hx-request)属性が追加され、リクエストの以下の点を設定できるようになりました。
+    * `timeout` - リクエストのタイムアウト時間。
+    * `credentials` - リクエストがクレデンシャルを送信する場合
+    * `noHeaders` - リクエストからすべてのヘッダーを取り除く。
+* 上記の属性とともに、対応する `htmx.config` プロパティ（例えば `htmx.config.timeout`）を使って、それぞれのデフォルト値を設定することができます。
+* [hx-swap](https://htmx.org/attributes/hx-swap)の`scroll`オプションと`show`オプションの両方が、擬似セレクタ`window:top`と`window:bottom`を含む、スクロールまたは表示する要素を選択するための拡張構文をサポートするようになりました。
+
+hx-swap](https://htmx.org/attributes/hx-swap)の`scroll`オプションと`show`オプションの両方が、擬似セレクタ`window:top`と`window:bottom`を含む、スクロールまたは表示する要素を選択するための拡張構文をサポートするようになりました。
 
 ## [1.4.1] - 2021-6-1
 
-* typo fix
+* 誤字修正
 
 ## [1.4.0] - 2021-5-25
 
-* Added the `queue` option to the [hx-trigger](https://htmx.org/attributes/hx-trigger) attribute, allowing you to specify how events
-  should be queued when they are received with a request in flight
-* The `htmx.config.useTemplateFragments` option was added, allowing you to use HTML template tags for parsing content
-  from the server.  This allows you to use Out of Band content when returning things like table rows, but it is not
-  IE11 compatible.
-* The `defaultSettleDelay` was dropped to 20ms from 100ms
-* Introduced a new synthetic event, [intersect](https://htmx.org/docs#pecial-events) that allows you to trigger when an item is scrolled into view
-  as specified by the `IntersectionObserver` API
-* Fixed timing issue that caused exceptions in the `reveal` logic when scrolling at incredible speeds - <https://github.com/bigskysoftware/htmx/issues/463>
-* Fixed bug causing SVG titles to be incorrectly used as page title - <https://github.com/bigskysoftware/htmx/issues/459>
-* Boosted forms that issue a GET will now push the URL by default - <https://github.com/bigskysoftware/htmx/issues/485>
-* Better dispatch of request events when an element is removed from the DOM
-* Fixed a bug causing `hx-prompt` to fail
-* The `htmx.config.withCredentials` option was added, to send credentials with ajax requests (default is `false`)
-* The `throttle` option on `hx-trigger` does not delay the initial request any longer
-* The `meta` key is ignored on boosted links
-* `<script>` tags are now evaluated in the global scope
-* `hx-swap` now supports the `none` option
-* Safari text selection bug - <https://github.com/bigskysoftware/htmx/issues/438>
+* [hx-trigger](https://htmx.org/attributes/hx-trigger)属性に `queue` オプションが追加され、飛行中のリクエストと共にイベントを受信した場合に、どのようにイベントをキューに入れるかを指定できるようになりました。
+* `htmx.config.useTemplateFragments`オプションが追加され、サーバからのコンテンツの解析にHTMLテンプレートタグを使用できるようになった。これにより、テーブルの行のようなものを返すときに Out of Band コンテンツを使用できるようになりますが、IE11 には対応していません。
+* `defaultSettleDelay`が100msから20msに変更されました。
+* 新しい合成イベント、[intersect](https://htmx.org/docs#pecial-events)が導入され、`IntersectionObserver` APIによって指定されたアイテムがビューにスクロールされたときにトリガーできるようになりました。
+* 信じられないような速度でスクロールしたときに、`reveal`ロジックで例外が発生するタイミングの問題を修正 - <https://github.com/bigskysoftware/htmx/issues/463>
+* SVGタイトルがページタイトルとして誤って使用されるバグを修正 - <https://github.com/bigskysoftware/htmx/issues/459>
+* GETを発行するブーストされたフォームは、デフォルトでURLをプッシュするようになりました - <https://github.com/bigskysoftware/htmx/issues/485>
+* 要素がDOMから削除されたときのリクエスト・イベントのディスパッチが改善された。
+* `hx-prompt`が失敗するバグを修正。
+* `htmx.config.withCredentials` オプションが追加され、ajax リクエストでクレデンシャルを送信できるようになった (デフォルトは `false`)。
+* `hx-trigger`の`throttle`オプションは、最初のリクエストをそれ以上遅らせない。
+* `meta`キーはブーストリンクでは無視される。
+* `<script>`タグがグローバル・スコープで評価されるようになった。
+* `hx-swap` が `none` オプションをサポートするようになった。
+* Safariテキスト選択のバグ - <https://github.com/bigskysoftware/htmx/issues/438>
   
 ## [1.3.3] - 2021-4-5
 
-* Added the [`hx-disabled`](https://htmx.org/docs#security) attribute to allow htmx to be turned off for parts of the DOM
-* SSE now uses a full-jitter exponential backoff algorithm on reconnection, using the `htmx.config.wsReconnectDelay`
-  setting
+* DOMの一部でhtmxをオフにできるように、[`hx-disabled`](https://htmx.org/docs#security)属性を追加した。
+* SSEは、`htmx.config.wsReconnectDelay` 設定を使用して、再接続時にフルジッター指数バックオフアルゴリズムを使用するようになった。
 
 ## [1.3.2] - 2021-3-9
 
-* Bug fixes
+* バグ修正
 
 ## [1.3.1] - 2021-3-9
 
-* IE11 fixes
+* IE11の修正
 
 ## [1.3.0] - 2021-3-6
 
-* Support a `target` modifier on `hx-trigger` to filter based on the element targeted by an event.  This allows
-  lazy binding to that target selector.
-* Events are no longer consumed by the first element that might handle them, unless the `consume` keyword is
-  added to the `hx-trigger` specification
-* Added the `htmx:beforeSend` event, fired just before an ajax request begins
-* SSE swaps are properly settled
-* Fixed bug that was improperly cancelling all clicks on anchors
-* `htmx.ajax()` now returns a promise
+* `hx-trigger`の `target` 修飾子をサポートし、イベントのターゲットとなる要素に基づいてフィルタリングできるようになった。これにより、ターゲットセレクタへの遅延バインディングが可能になる。
+* イベントは、`hx-trigger` 指定に `consume` キーワードが追加されない限り、そのイベントを処理する可能性のある最初のエレメントによって消費されなくなります。
+* ajax リクエストが始まる直前に発生する `htmx:beforeSend`イベントを追加した。
+* SSEスワップは適切に決済されている
+* アンカーをクリックした際、すべてのクリックが不適切にキャンセルされていたバグを修正
+* `htmx.ajax()` がプロミスを返すようになった。
 
 ## [1.2.1] - 2021-2-19
 
-* Fixed an issue with the history cache, where the cache was getting blown out after the first navigation backwards
-* Added the `htmx.config.refreshOnHistoryMiss` option, allowing users to trigger a full page refresh on history cache miss
-  rather than issuing an AJAX request
+* 履歴キャッシュで、最初のナビゲーションの後、キャッシュが吹っ飛んでしまう問題を修正。
+* `htmx.config.refreshOnHistoryMiss`オプションを追加し、AJAXリクエストを発行するのではなく、履歴キャッシュの取りこぼし時に全ページの更新をトリガーできるようにした。
 
 ## [1.2.0] - 2021-2-13
 
-### New Features
+### 新機能
 
-* `hx-vars` has been deprecated in favor of `hx-vals`
-* `hx-vals` now supports a `javascript:` prefix to achieve the behavior that `hx-vars` provided
-* The new `hx-headers` attribute allows you to add headers to a request via an attribute.  Like `hx-vals` it supports
-  JSON or javascript via the `javascript:` prefix
-* `hx-include` will now include all inputs under an element, even if that element is not a form tag
-* The [preload extension](https://htmx.org/extensions/preload/) now offers a `preload-images="true"` attribute that will aggressively load images in preloaded content
-* On requests driven by a history cache miss, the new `HX-History-Restore-Request` header is included so that the server
-  can differentiate between history requests and normal requests 
+* `hx-vars` は非推奨となり、`hx-vals` が使われるようになった。
+* `hx-vars`が提供していた動作を実現するために、`hx-vals`が `javascript:` 接頭辞をサポートするようになった。
+* 新しい `hx-headers` 属性は、属性を使ってリクエストにヘッダを追加することができます。`hx-vals` と同様に、JSON や `javascript:` 接頭辞を使った javascript をサポートしています。
+* `hx-include` は、その要素がフォームタグでなくても、要素の下にあるすべての入力をインクルードするようになりました。
+* [preload extension](https://htmx.org/extensions/preload/) が プリロードされたコンテンツの画像を積極的にロードする、`preload-images="true"` 属性を提供するようになりました。
+* 履歴キャッシュのミスによるリクエストでは、サーバーが履歴リクエストと通常のリクエストを区別できるように、新しい `HX-History-Restore-Request` ヘッダーが含まれます。
 
-### Improvements & Bug fixes
+### 改善とバグ修正
 
-* Improved handling of precedence of input values to favor the enclosing form (see [here](https://github.com/bigskysoftware/htmx/commit/a10e43d619dc340aa324d37772c06a69a2f47ec9))
-* Moved event filtering logic *after* `preventDefault` so filtering still allows events to be properly handled
-* No longer trigger after swap events on elements that have been removed via an `outerHTML` swap
-* Properly remove event handlers added to other elements when an element is removed from the DOM
-* Handle the `scroll:` modifier in `hx-swap` properly when an `outerHTML` swap occurs
-* Lots of docs fixes
+* 入力値の優先順位の取り扱いを改善し、囲み形式を優先するようにした（[こちら](https://github.com/bigskysoftware/htmx/commit/a10e43d619dc340aa324d37772c06a69a2f47ec9)を参照）。
+* イベントのフィルタリングロジックを `preventDefault` の後に移動した。そのため、フィルタリングしてもイベントは適切に処理されます。
+* `outerHTML`スワップによって削除された要素に対して、スワップ後イベントをトリガーしなくなった。
+* 要素がDOMから削除されたときに、他の要素に追加されたイベント・ハンドラを適切に削除する。
+* `hx-swap`の`scroll:`モディファイアを、`outerHTML`のスワップが発生したときに適切に処理する。
+* 多くのドキュメント修正
 
 ## [1.1.0] - 2021-1-6
 
-* Newly added [preload extension](https://htmx.org/extensions/preload/) allows you to preload resources for lower
-  latency requests!
-* Support the `ignore:` modifier for extensions
-* Updated form variable order inclusion to include the enclosing form *last* so that, in the presence of multiple 
-  values, the most relevant value is the most likely to be selected by the server
-* Support for the [`htmx.ajax()`](https://dev.htmx.org/api/#ajax) javascript function, to issue an htmx-style ajax 
-  request from javascript
-* Removed the following htmx request headers for better cache behavior: `HX-Event-Target`, `HX-Active-Element`, 
-  `HX-Active-Element-Name`, `HX-Active-Element-Value`
-* Added the [`hx-preserve`](https://dev.htmx.org/attributes/hx-preserve) attribute, which allows 
-  you to preserve elements across requests (for example, to keep a video element playing properly)
-* The [path-deps](https://dev.htmx.org/extensions/path-deps/#refresh) now surfaces a small api
-  for refreshing path dependencies manually in javascript
-* Now support the `from:` clause on [`hx-trigger`](https://dev.htmx.org/attributes/hx-trigger) to
-  allow an element to respond to events on other elements.
-* Added the `htmx:beforeProcessNode` event, renamed the (previously undocumented) `htmx:processedNode` to `htmx:afterProcessNode`
-* Added `closest` syntax support for the [`hx-indicator`](https://dev.htmx.org/attributes/hx-indicator) attribute
-* Added `on load` support for the newest version of [hyperscript](https://hyperscript.org)
-* Added the `htmx.config.allowEval` configuration value, for CSP compatibility
-* Bug fixes & improvements 
+* 新しく追加された[preload extension](https://htmx.org/extensions/preload/)は、より低遅延なリクエストのためにリソースをプリロードすることができます！
+* 拡張機能の `ignore:` 修飾子をサポートする。
+* 複数の値が存在する場合、最も関連性の高い値がサーバーによって選択される可能性が最も高くなるように、フォーム変数の順序を更新し、フォームを囲む*最後*の値を含めるようにした。
+* htmx 形式の ajax リクエストを javascript から発行するための [`htmx.ajax()`](https://dev.htmx.org/api/#ajax) javascript 関数をサポート。
+* キャッシュの動作を改善するために、以下の htmx リクエストヘッダを削除した: `HX-Event-Target`、`HX-Active-Element`、`HX-Active-Element-Name`、`HX-Active-Element-Value`
+* [`hx-preserve`](https://dev.htmx.org/attributes/hx-preserve)属性が追加され、リクエストにまたがって要素を保持できるようになりました (たとえば、video要素を正しく再生し続けることができます)。
+* [path-deps](https://dev.htmx.org/extensions/path-deps/#refresh)は、javascriptで手動でパスの依存関係を更新するための小さなAPIを表示するようになりました。
+* [`hx-trigger`](https://dev.htmx.org/attributes/hx-trigger)の`from:`節をサポートし、ある要素が他の要素のイベントに応答できるようになりました。
+* `htmx:beforeProcessNode` イベントを追加し、(以前はドキュメント化されていなかった) `htmx:processedNode` の名前を `htmx:afterProcessNode` に変更した。
+* [`hx-indicator`](https://dev.htmx.org/attributes/hx-indicator)属性に `closest` 構文を追加した。
+* 最新バージョンの[hyperscript](https://hyperscript.org)の`on load`サポートを追加。
+* CSP との互換性のために `htmx.config.allowEval` 設定値を追加した。
+* バグ修正と改善 
 
 ## [1.0.2] - 2020-12-12
 
-* Extend all API methods to take a string selector as well as an element
-* Out of band swap elements need not be top level now
-* [`hx-swap-oob`](https://htmx.org/attributes/hx-swap-oob) now can accept a CSS selector to retarget with
+* すべての API メソッドを拡張し、要素だけでなく文字列セレクタも受け取れるようにする。
+* 帯域外のスワップ・エレメントがトップレベルである必要はなくなった。
+* [hx-swap-oob`](https://htmx.org/attributes/hx-swap-oob) でリターゲットする CSS セレクタを受け付けるようになった。
 
 ## [1.0.1] - 2020-12-04
 
-* AJAX file upload now correctly fires events, allowing for [a proper progress bar](https://htmx.org/examples/file-upload)
-* htmx api functions that expect an element now can accept a string selector instead:
+* AJAXファイルアップロードが正しくイベントを発生するようになり、[適切なプログレスバー](https://htmx.org/examples/file-upload)が可能になった。
+* htmx apiの関数のうち、要素を指定する関数で、文字列セレクタを指定できるようになりました：
    ```js
     htmx.on('#form', 'htmx:xhr:progress', function(evt) {
       htmx.find('#progress').setAttribute('value', evt.detail.loaded/evt.detail.total * 100)
     });
    ```
-* htmx now properly handles the `multiple` attribute on `<select>` elements
+* htmx が `<select>` 要素の `multiple` 属性を適切に処理するようになった。
 
 ## [1.0.0] - 2020-11-24
 
-* Bumped the release version :)
+* リリース・バージョンを繰り上げ 😀
 
 ## [0.4.1] - 2020-11-23
 
-* Fixed bug with title tag support when title tag contained HTML entities
-* Pass properties for the `loadstart`, `loadend`, `progress`, `abort` events through properly to the htmx equivalents
+* タイトルタグにHTMLエンティティが含まれる場合のタイトルタグのサポートに関するバグを修正
+* `loadstart`、`loadend`、`progress`、`abort` イベント属性を htmx の同等物に適切に渡す。
 
 ## [0.4.0] - 2020-11-16
 
-* Now support the `HX-Redirect` and `HX-Refresh` response headers for redirecting client side and triggering a page refresh, respectively
-* `hx-vars` now overrides input values
-* `<title>` tags in responses will be used to update page titles
-* All uses of `eval()` have been removed in favor of `Function`
-* [`hx-vals`](https://htmx.org/attributes/hx-vals) is available as a safe alternative to `hx-vars`.  It uses `JSON.parse()` rather than evaluation, if you wish to safely pass user-provided values through to htmx.
+* レスポンスヘッダ `HX-Redirect` と `HX-Refresh` をサポートし、それぞれクライアント側へのリダイレクトとページ更新を行えるようになりました。
+* `hx-vars` が入力値を上書きするようになった。
+* レスポンスに含まれる`<title>`タグは、ページタイトルの更新に使用される。
+* `eval()`の使用はすべて削除され、`Function`が使用されるようになった。
+* `hx-vars` に代わる安全な方法として、[`hx-vals`](https://htmx.org/attributes/hx-vals) があります。ユーザーが提供した値を安全に htmx に渡したい場合は、評価ではなく `JSON.parse()` を使用します。
 
 ## [0.3.0] - 2020-10-27
 
-* `hx-trigger` parsing has been rewritten and now supports [trigger filters](https://htmx.org/docs/#trigger-filters) to filter
-  events based on arbitrary javascript expressions
-* htmx now supports two additional response headers `HX-Trigger-After-Swap` and `HX-Trigger-After-Settle` allowing
-  an event to be triggered after a given life cycle event (instead of before the swap)
-* The `requestConfig` is now passed out to events surrounding the AJAX life cycle
-* htmx now evaluates `<script>` tags as javascript when no language is defined on them
-* A new [`event-header`](https://htmx.org/extensions/event-header) extension, which will include a serialized JSON representation of the triggering event in requests
-  
+* `hx-trigger`の解析が書き直され、任意のjavascript式に基づいてイベントをフィルタリングするための[trigger filters](https://htmx.org/docs/#trigger-filters)がサポートされました。
+* htmx は2つの追加レスポンスヘッダ `HX-Trigger-After-Swap` と `HX-Trigger-After-Settle` をサポートし、指定されたライフサイクルイベントの後（スワップ前ではなく）にイベントをトリガーできるようになりました。
+* `requestConfig`は、AJAXのライフサイクルを取り巻くイベントに渡されるようになった。
+* htmx は `<script>` タグに言語が定義されていない場合、javascript として評価するようになった。
+* 新しい[`event-header`](https://htmx.org/extensions/event-header)エクステンションは、リクエストにイベントのトリガーとなるシリアライズされたJSON表現を含めます。
+
 ## [0.2.0] - 2020-9-30
 
-* AJAX file upload [support](https://htmx.org/docs#files)
-* The HTML validation API is [respected](https://htmx.org/docs#validation)
+* AJAXファイルアップロード [サポート](https://htmx.org/docs#files)
+* HTMLバリデーションAPIは[respectected](https://htmx.org/docs#validation)
 
 ## [0.1.0] - 2020-9-18
 
-* *BREAKING CHANGE*: The SSE attribute [`hx-sse`](https://htmx.org/attributes/hx-sse/) and the Web Sockets attribute [`hx-ws`](https://htmx.org/attributes/hx-ws) have changed syntax to now use colon separators: `hx-sse='connect:/chat swap:message'`
-* The SSE attribute [`hx-sse`](https://htmx.org/attributes/hx-sse/) allows for swapping content directly on an event, in addition to triggering an htmx element,
-with the new `swap:<event name>` syntax.
-* [`hx-target`](https://htmx.org/attributes/hx-target) now supports a `find` syntax to find elements below the element by a CSS selector
-* htmx plays better with deferred loading and many package managers
-* All htmx events are dispatched in both camelCase as well as kebab-case, for better compatibility with AlpineJS and other frameworks.  (e.g. `htmx:afterOnLoad` will also be triggered as
-`htmx:after-on-load`)
-* [hypeerscript](https://hyperscript.org) is now initialized independently of htmx
+* *画期的な変更*です：SSE属性 [`hx-sse`](https://htmx.org/attributes/hx-sse/) と Web Sockets属性 [`hx-ws`](https://htmx.org/attributes/hx-ws) の構文が変更され、コロン区切りが使用されるようになりました：`hx-sse='connect:/chat swap:message'` となります。
+* SSE属性[`hx-sse`](https://htmx.org/attributes/hx-sse/)は、新しい構文`swap:<イベント名>`によって、htmx要素をトリガーするだけでなく、イベントで直接コンテンツを入れ替えることができます。
+* [`hx-target`](https://htmx.org/attributes/hx-target)は、CSSセレクタで要素より下の要素を見つけるための`find`構文をサポートするようになりました。
+* htmxは遅延ローディングと多くのパッケージマネージャでより良く動作する。
+* すべての htmx イベントは、AlpineJS や他のフレームワークとの互換性を高めるために、キャメルケースとケバブケースの両方でディスパッチされます。(例えば、`htmx:afterOnLoad`は、`htmx:after-on-load`としてもトリガーされます)
+* [hypeerscript](https://hyperscript.org)がhtmxとは無関係に初期化されるようになった。
 
 ## [0.0.8] - 2020-7-8
 
-* The `view` modifier on `hx-swap` has been renamed to `show`: `hx-swap='innerHTML show:top'`
+* `hx-swap` の `view` 修飾子は `show` に名前が変更されました: `hx-swap='innerHTML show:top'`
 
 ## [0.0.7] - 2020-6-30
 
-* The [`hx-swap`](https://htmx.org/attributes/hx-swap) attribute now supports two new modifiers:
-    * `scroll` - allows you to scroll the target to the `top` or `bottom`
-    * `view` - allows you to scroll the `top` or `bottom` of the target into view
-* The [`hx-push-url`](https://htmx.org/attributes/hx-push-url) attribute now can optionally take a URL to push, in addition to `true` and `false`
-* Added the [`hx-vars`](https://htmx.org/attributes/hx-vars) attribute that allows you to dynamically add to the parameters that will be submitted with a request
+* [`hx-swap`](https://htmx.org/attributes/hx-swap)属性が2つの新しい修飾子に対応しました：
+    * `scroll` - ターゲットを `top` または `bottom` にスクロールさせる。
+    * `view` - ターゲットの `top` または `bottom` をスクロールして表示する。
+* [`hx-push-url`](https://htmx.org/attributes/hx-push-url) 属性は、 `true` と `false` に加えて、オプションでプッシュする URL を指定できるようになりました。
+* リクエストと一緒に送信されるパラメータに動的に追加できる [`hx-vars`](https://htmx.org/attributes/hx-vars) 属性を追加しました。
 
 ## [0.0.6] - 2020-6-20
 
-* Custom request/response headers no longer start with the `X-` prefix, which is no longer recommended
-* empty verb attributes are now allowed and follow the anchor tag semantics (e.g. `<div hx-get></div>`)
-* nunjuks inline rendering is now supported in the `client-side-templates` extension
-* the new `ajax-header` extension includes the `X-Requested-With` header
-* bad JSON is now handled more gracefully
-* `hx-swap="none"` will cause no swap to take place <https://github.com/bigskysoftware/htmx/issues/89>
-* `hx-trigger` now supports a `throttle` modifier <https://github.com/bigskysoftware/htmx/issues/88>
-* the focused element is preserved if possible after a replacement
-* perf improvements for large DOM trees with sparse `hx-` annotations
+* カスタムリクエスト/レスポンスヘッダが `X-` 接頭辞で始まらないようになりました。
+* 空の動詞属性が許可され、アンカータグのセマンティクスに従うようになりました (例 `<div hx-get></div>`)
+* nunjuksのインライン・レンダリングが`client-side-templates`拡張機能でサポートされるようになった。
+* 新しい `ajax-header` 拡張は `X-Requested-With` ヘッダーを含む。
+* 悪いJSONがより優雅に処理されるようになった
+* `hx-swap="none"`はスワップを行わない <https://github.com/bigskysoftware/htmx/issues/89>
+* `hx-trigger` が `throttle` 修飾子をサポートするようになった <https://github.com/bigskysoftware/htmx/issues/88>
+* フォーカスされた要素は、可能であれば置換後も保持されます。
+* 疎な `hx-` アノテーションを持つ大きな DOM ツリーに対するパフォーマンスの改善
 
 ## [0.0.4] - 2020-5-24
 
-* Extension mechanism added
-* SSE support added
-* WebSocket support added
+* 拡張メカニズム追加
+* SSEサポート追加
+* WebSocketのサポート追加
 
 ## [0.0.3] - 2020-5-17
 
-* Renamed to htmx
-* A bug fix for the `hx-prompt` attribute
-* A bug fix for multiple `hx-swap-oob` attributes
-* Moved the default CSS indicator injection into its own sheet to avoid breaking
-* Added the `htmx.config.includeIndicatorStyles` configuration option so people can opt out of injecting the indicator CSS
+* htmxに改名
+* `hx-prompt`属性のバグ修正
+* 複数の `hx-swap-oob` 属性に関するバグ修正
+* デフォルトのCSSインジケーター注入を独自のシートに移動し、壊れないようにした。
+* `htmx.config.includeIndicatorStyles`設定オプションを追加し、インジケータCSSの注入を拒否できるようにした。
 
 
 ## [0.0.1] - 2020-5-15
 
-* Initial release (originally named kutty)
+* 初回リリース（当初の名前はkutty）

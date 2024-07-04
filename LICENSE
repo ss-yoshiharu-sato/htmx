@@ -1,13 +1,21 @@
 Zero-Clause BSD
 =============
 
-Permission to use, copy, modify, and/or distribute this software for
-any purpose with or without fee is hereby granted.
+Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby granted.
 
-THE SOFTWARE IS PROVIDED “AS IS” AND THE AUTHOR DISCLAIMS ALL
-WARRANTIES WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES
-OF MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE
-FOR ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY
-DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN
-AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT
-OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+THE SOFTWARE IS PROVIDED “AS IS” AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+
+
+ゼロ条項 BSD
+=============
+
+本ソフトウェアの使用、複製、変更、および/または頒布は、有償無償を問わず、いかなる目的にも使用することができます。
+
+本ソフトウェアは「現状の姿」で提供され、作者は本ソフトウェアに関する商品性および適合性の黙示的保証を含むすべての保証を否認します。本ソフトウェアの使用または性能に起因または関連して発生した特別損害、直接的損害、間接的損害、派生的損害、または使用、データ、利益の損失から生じたいかなる損害についても、契約、過失、その他の不法行為にかかわらず、作者は一切責任を負いません。
+
+[BSDライセンス - Wikipedia](https://ja.wikipedia.org/wiki/BSD%E3%83%A9%E3%82%A4%E3%82%BB%E3%83%B3%E3%82%B9)
+
+注意：これはISCライセンスを改変したものであり、BSD群のライセンスの本文から派生したものではありません。
+ゼロ条項BSDはもともと「フリー・パブリックライセンス 1.0.0」の名称で承認を得ていました。
+
+[ゼロ条項BSD](https://licenses.opensource.jp/0BSD/0BSD.html)
