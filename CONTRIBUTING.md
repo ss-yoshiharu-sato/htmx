@@ -1,31 +1,31 @@
-# Contributing
-Thank you for your interest in contributing! Because we're a small team, we have a couple contribution guidelines that make it easier for us to triage all the incoming suggestions.
+# 貢献
+貢献へのご関心、ありがとうございます！私たちは少人数のチームですので、寄せられる提案のトリアージを容易にするために、いくつかの貢献ガイドラインを設けています。
 
-## Issues
-1. Issues are the best place to propose a new feature. Keep in mind that htmx is a small library, so there are lots of great ideas that don't fit in the core; it's always best to check in about an idea before doing a bunch of work on it.
-1. When proposing a new features, we will often suggest that you implement it as an [extension](https://htmx.org/extensions), so try that first. Even if we don't end up supporting it officially, you can publish it yourself and we can link to it.
-1. Search the issues before proposing a feature to see if it is already under discussion. Referencing existing issues is a good way to increase the priority of your own.
-1. We don't have an issue template yet, but the more detailed your description of the issue, the more quickly we'll be able to evaluate it.
-1. See an issue that you also have? Give it a reaction (and comment, if you have something to add). We note that!
-1. If you haven't gotten any traction on an issue, feel free to bump it in the #issues-and-pull-requests channel on our Discord.
-1. Want to contribute but don't know where to start? Look for issues with the "help wanted" tag.
+## 課題
+1. issueは新機能を提案するのに最適な場所です。htmxは小さなライブラリなので、コアに収まらない素晴らしいアイデアがたくさんあることを覚えておいてください。
+2. 新しい機能を提案する際、私たちはしばしばそれを[拡張機能](https://htmx.org/extensions)として実装することを提案しますので、まずはそれを試してみてください。私たちが公式にサポートすることにならなくても、あなた自身がそれを公開し、私たちがそれにリンクすることは可能です。
+3. 機能を提案する前にissueを検索し、すでに議論中かどうかを確認してください。既存の課題を参照することは、自分の課題の優先度を上げる良い方法です。
+4. issueのテンプレートはまだありませんが、issueをより詳細に記述していただければ、より迅速に評価することができます。
+5. あなたも抱えている問題がありますか？リアクションをお願いします。私たちは次のことに注意しています！
+6. もし、まだ解決していない問題があれば、Discordの #issues-and-pull-requests チャンネルに投稿してください。
+7. 献したいけど、何から始めたらいいかわからない？「ヘルプ募集」タグの付いた課題を探してください。
 
-## Pull Requests
-### Technical Requirements
-1. Please lint all proposed changes with the `npm lint-fix` command
-1. All PRs must be made against the `dev` branch, except documentation PRs (that only modify the `www/` directory) which can be made against `master`.
-1. Please avoid sending the `dist` files along your PR, only include the `src` ones.
-1. Please include test cases in [`/test`](https://github.com/bigskysoftware/htmx/tree/dev/test) and docs in [`/www`](https://github.com/bigskysoftware/htmx/tree/dev/www).
-1. We squash all PRs, so you're welcome to submit with as many commits as you like; they will be evaluated as a single, standalone change.
+## プルリクエスト
+### 技術要件
+1. `npm lint-fix` コマンドを使用して、提案されたすべての変更を lint してください。
+2. すべてのPRは `dev` ブランチに対して行わなければなりませんが、ドキュメントPR (`www/` ディレクトリのみを修正するもの) は `master` に対して行うことができます。
+3. PRと一緒に `dist` ファイルを送るのは避けてください。
+4. テストケースは[`/test`](https://github.com/bigskysoftware/htmx/tree/dev/test)に、ドキュメントは[`/www`](https://github.com/bigskysoftware/htmx/tree/dev/www)に記述してください。
+5. 私たちはすべてのPRをつぶすので、好きなだけコミットしてください。これらは単独の変更として評価されるでしょう。
 
-### Review Guidelines
-1. Open PRs represent issues that we're actively thinking working on merging (at a pace we can manage). If we think a proposal needs more discussion, or that the existing code would require a lot of back-and-forth to merge, we might close it and suggest you make an issue.
-1. Smaller PRs are easier and quicker to review. If we feel that the scope of your changes is too large, we will close the PR and try to suggest ways that the change could be broken down.
-1. Please do not PR new features unless you have already made an issue proposing the feature, and had it accepted by a core maintainer. This helps us triage the features we can support before you put a lot of work into them.
-1. Correspondingly, it is fine to directly PR bugfixes for behavior that htmx already guarantees, but please check if there's an issue first, and if you're not sure whether this *is* a bug, make an issue where we can hash it out..
-1. Refactors that do not make functional changes will be automatically closed, unless explicitly solicited. Imagine someone came into your house unannounced, rearranged a bunch of furniture, and left.
-1. Typo fixes in the documentation (not the code comments) are welcome, but formatting or debatable grammar changes will be automatically closed.
+### 審査ガイドライン
+1. オープンなPRは、私たちが（私たちが管理できるペースで）積極的にマージしようと考えている問題を表しています。もしその提案にもっと議論が必要であったり、既存のコードをマージするのに多くのやりとりが必要であると私たちが考える場合、私たちはそのPRをクローズし、あなたがissueを作成するよう提案するかもしれません。
+2. 小さなPRの方がレビューが簡単で迅速です。あなたの変更の範囲が大きすぎると感じた場合、PR をクローズし、その変更を分割する方法を提案するようにします。
+3. すでにその機能を提案する issue を作成し、コアメンテナがそれを承認していない限り、新しい機能を PR しないでください。こうすることで、あなたが多くの労力を費やす前に、私たちがサポートできる機能を選別することができます。
+4. もしそれがバグかどうかわからない場合は、issueを作成し、そこで解決しましょう、それに対応して、htmxがすでに保証している動作のバグフィックスを直接PRしても問題ありません、 
+5. 機能的な変更を行わないリファクターは、明示的に勧誘されない限り、自動的にクローズされます。誰かが予告なしにあなたの家にやってきて、家具の配置を変えて出て行ったと想像してみてください。
+6. （コードコメントではなく）ドキュメントの誤字脱字の修正は歓迎しますが、書式や文法に議論の余地がある変更は自動的にクローズされます。
 
-## Misc
-1. If you think we closed something incorrectly, feel free to (politely) tell us why! We're human and make mistakes.
-1. There are lots of ways to improve htmx besides code changes. Sometimes a problem can be solved with better docs, usage patterns, extensions, or community support. Talk to us and we can almost always help you get to a solution.
+## その他
+1. もし私たちが何かを間違って閉じたと思われるなら、遠慮なく（丁重に）その理由を教えてください！私たちは人間であり、間違うこともあります。
+2. コードの変更以外にもhtmxを改善する方法はたくさんあります。より良いドキュメント、使用パターン、拡張機能、コミュニティのサポートによって問題が解決することもあります。私たちに相談すれば、ほとんどの場合解決に導くことができます。
