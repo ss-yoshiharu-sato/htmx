@@ -3,53 +3,25 @@ insert_anchor_links = "left"
 +++
 
 <style type="text/css">
-.wuw {
-  display:none;
-}
-.uwu {
-  display:none;
-}
-body.lmao .dark-hero .main {
-    display:none;
-}
-body.lmao .dark-hero .wuw {
-    display:block;
-    padding-top: 24px;
-}
-body.lmao .dark-hero .uwu {
-    display:none;
-}
-body.kawaii .dark-hero .main {
-    display:none;
-}
-body.kawaii .dark-hero .wuw {
-    display:none;
-}
-body.kawaii .dark-hero .uwu {
-    display:block;
-    padding-top: 24px;
-}
-
+.wuw {display:none;}
+.uwu {display:none;}
+body.lmao .dark-hero .main {display:none;}
+body.lmao .dark-hero .wuw {display:block;padding-top: 24px;}
+body.lmao .dark-hero .uwu {display:none;}
+body.kawaii .dark-hero .main {display:none;}
+body.kawaii .dark-hero .wuw {display:none;}
+body.kawaii .dark-hero .uwu {display:block;padding-top: 24px;}
 body.ads .ad {
   display: block;
   text-align: center;
   margin-left: calc(50% - 50vw);
   margin-right: calc(50% - 50vw);
 }
-
-body.ads .ad a:hover {
-  opacity: 100%;
-}
-
-body .ad {
-  display: none;
-}
-
-body.ads .ad img {
-  max-width: 90vw;
-}
-
+body.ads .ad a:hover {opacity: 100%;}
+body .ad {display: none;}
+body.ads .ad img {max-width: 90vw;}
 </style>
+
 <script type="application/javascript">
 if(window.location.search=="?wuw=true" || window.location.search=="?suw=true") {
   document.body.classList.add('lmao');
@@ -70,53 +42,40 @@ if(window.location.search=="?ads=true") {
 
 <div class="dark-hero full-width" classes="add appear">
   <div class="main">
-      <span class="logo dark">&lt;<span class="blue">/</span>&gt; <span class="no-mobile">htm<span class="blue">x</span></span></span>
-      <sub class="no-mobile"><i>high power tools for HTML</i></sub>
+      <span class="logo dark">&lt;<span class="blue">/</span>&gt; <span class="no-mobile">htm<span class="blue">x</span></span></span><sub class="no-mobile"><i>HTML用ハイパワーツール</i></sub>
   </div>
   <div class="wuw">
-     <a href="https://swag.htmx.org/products/shut-up-warren-tee">
-       <img src="/img/wuw.png">
-     </a>
+     <a href="https://swag.htmx.org/products/shut-up-warren-tee"><img src="/img/wuw.png"></a>
   </div>
   <div class="uwu">
-     <a href="https://swag.htmx.org/products/htmx-katakana-shirt">
-       <img src="/img/kawaii.png">
-     </a>
+     <a href="https://swag.htmx.org/products/htmx-katakana-shirt"><img src="/img/kawaii.png"></a>
   </div>
 </div>
-<div class="ad">
-<a href="https://swag.htmx.org">
-  <img src="/img/ads_bottom.png"/>
-</a>
-</div>
+<div class="ad"><a href="https://swag.htmx.org"><img src="/img/ads_bottom.png"/></a></div>
 
 <div class="alert">
-<b>NEWS:</b> htmx 2.0 has been released!  It is not currently marked as <a href="https://docs.npmjs.com/cli/v10/commands/npm-dist-tag#purpose"><code>latest</code></a>
-in NPM so that people using the <a href="https://v1.htmx.org">1.x line</a> are not accidentally upgraded.  We will mark
-2.0 as <code>latest</code> at some point in 2025.
+<b>NEWS:</b> htmx 2.0がリリースされました！現在、<a href="https://docs.npmjs.com/cli/v10/commands/npm-dist-tag#purpose"><code>最新</code></a>としてマークされていない。
+NPMで<a href="https://v1.htmx.org">1.x系</a>を使用している人が誤ってアップグレードしないように。私たちは2025年には、2.0を<code>最新</code>としてマークする予定です。
 </div>
 
-<h2>introduction</h2>
+<h2>導入（イントロ）</h2>
 
-htmx gives you access to [AJAX](@/docs.md#ajax), [CSS Transitions](@/docs.md#css_transitions), [WebSockets](@/docs.md#websockets-and-sse) and [Server Sent Events](@/docs.md#websockets-and-sse)
-directly in HTML, using [attributes](@/reference.md#attributes), so you can build
-[modern user interfaces](@/examples/_index.md) with the [simplicity](https://en.wikipedia.org/wiki/HATEOAS) and
-[power](https://www.ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm) of hypertext
+htmxは、[AJAX](@/docs.md#ajax)、[CSS Transitions](@/docs.md#css_transitions)、[WebSockets](@/docs.md#websockets-and-sse)、[Server Sent Events](@/docs.md#websockets-and-sse)へのアクセスを提供します。
+なので、[モダンなユーザーインターフェイス](@/examples/_index.md)を[シンプルさ](https://en.wikipedia.org/wiki/HATEOAS)と
+ハイパーテキストの[パワー](https://www.ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm)を使って、[属性](@/reference.md#attributes)をHTMLに直接書くことができます。
 
-htmx is small ([~14k min.gz'd](https://unpkg.com/htmx.org/dist/)),
-[dependency-free](https://github.com/bigskysoftware/htmx/blob/master/package.json),
-[extendable](https://extensions.htmx.org) & has **reduced** code base sizes by [67% when compared with react](@/essays/a-real-world-react-to-htmx-port.md)
+htmxは小さく([~14k min.gz'd](https://unpkg.com/htmx.org/dist/))、[依存性のない](https://github.com/bigskysoftware/htmx/blob/master/package.json)、[拡張が可能](https://extensions.htmx.org)であり、コードベースのサイズを[reactと比較して67%](@/essays/a-real-world-react-to-htmx-port.md)**削減**しています。
 
-<h2>motivation</h2>
+<h2>動機（モチベ）</h2>
 
-* Why should only [`<a>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a) & [`<form>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form) be able to make HTTP requests?
-* Why should only [`click`](https://developer.mozilla.org/en-US/docs/Web/API/Element/click_event) & [`submit`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement/submit_event) events trigger them?
-* Why should only [`GET`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/GET) & [`POST`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST) methods be [available](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods)?
-* Why should you only be able to replace the **entire** screen?
+* なぜ[`<a>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a)と[`<form>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form)だけがHTTPリクエストできるのですか？
+* なぜ[`click`](https://developer.mozilla.org/en-US/docs/Web/API/Element/click_event)と[`submit`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement/submit_event)のイベントだけがトリガーされるのですか？
+* なぜ[`GET`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/GET)と[`POST`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST)のメソッドだけが[利用可能](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods)なのでしょうか？
+* なぜスクリーン全体でしか更新できないのですか？
 
-By removing these constraints, htmx completes HTML as a [hypertext](https://en.wikipedia.org/wiki/Hypertext)
+これらの制約を取り除くことで、htmxは[ハイパーテキスト](https://en.wikipedia.org/wiki/Hypertext)としてHTMLを完成させる。
 
-<h2>quick start</h2>
+<h2>クイックスタート</h2>
 
 ```html
   <script src="https://unpkg.com/htmx.org@2.0.0"></script>
@@ -126,34 +85,31 @@ By removing these constraints, htmx completes HTML as a [hypertext](https://en.w
   </button>
 ```
 
-The [`hx-post`](@/attributes/hx-post.md) and [`hx-swap`](@/attributes/hx-swap.md) attributes on
-this button tell htmx:
+このボタンの[`hx-post`](@/attributes/hx-post.md)と[`hx-swap`](@/attributes/hx-swap.md)属性はhtmxに以下の内容を伝えます：
 
-> "When a user clicks on this button, issue an AJAX request to /clicked, and replace the entire button with the HTML response"
+> "ユーザーがこのボタンをクリックしたら、`/clicked`にAJAXリクエストを発行し、ボタン全体をHTMLレスポンスに置き換えなさい"
 
-htmx is the successor to [intercooler.js](http://intercoolerjs.org)
+htmxは[intercooler.js](http://intercoolerjs.org)の後継です。
 
-Read the [docs introduction](@/docs.md#introduction) for a more in-depth... introduction.
+より詳しい導入内容は[docs introduction](@/docs.md#introduction)をお読みください。
 
-Note that htmx 2.x has dropped IE support.  If you require IE support you can use the [1.x](https://v1.htmx.org)
-code-line, which will be supported in perpetuity.
+<b>Note: </b> htmx 2.xはIEのサポートを停止しました。IEのサポートが必要な場合は、[1.x](https://v1.htmx.org)
+のコードラインを使ってください。
 
-<h2><a name='book'></a>book</h2>
+<h2><a name='book'></a>書籍</h2>
 
-We are happy to announce the release of [Hypermedia Systems](https://hypermedia.systems), a book on how to build
-[Hypermedia-Driven Applications](@/essays/hypermedia-driven-applications.md) using htmx & more:
+私達は、書籍「[ハイパーメディア・システム](https://hypermedia.systems)」をリリースしました（英語）。
+htmxとその他のツールを使って、[ハイパーメディア駆動アプリケーション](@/essays/hypermedia-driven-applications.md)を作る方法について書かれた本です：
 
 <div style="text-align: center;padding: 24px">
 <a href="https://www.amazon.com/dp/B0C9S88QV6/ref=sr_1_1?crid=1P0I3GXQK32TN"><img src="/img/hypermedia-systems.png" alt="hypermedia systems"></a>
 </div>
 
-<h2>sponsors <iframe src="https://github.com/sponsors/bigskysoftware/button" title="Sponsor htmx" height="32" width="114" style="border: 1px solid gray; border-radius: 12px; float:right"></iframe></h2>
+<h2>協賛 <iframe src="https://github.com/sponsors/bigskysoftware/button" title="Sponsor htmx" height="32" width="114" style="border: 1px solid gray; border-radius: 12px; float:right"></iframe></h2>
 
+htmxの開発は[GitHub Sponsors](https://github.com/sponsors/bigskysoftware?o=esb)でサポートされます。
 
-htmx development can be supported via [GitHub Sponsors](https://github.com/sponsors/bigskysoftware?o=esb)
-
-
-Thank you to all our generous <a href="https://github.com/sponsors/bigskysoftware?o=esb">supporters</a>, including:
+寛大な<a href="https://github.com/sponsors/bigskysoftware?o=esb">サポーターの皆様</a>に感謝いたします：
 
 <style>
 #sponsor-table td {
