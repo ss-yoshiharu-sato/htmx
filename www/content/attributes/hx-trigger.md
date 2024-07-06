@@ -2,84 +2,72 @@
 title = "hx-trigger"
 +++
 
-The `hx-trigger` attribute allows you to specify what triggers an AJAX request.  A trigger
-value can be one of the following:
+`hx-trigger`属性はAJAXリクエストのトリガーを指定します。トリガーの値は以下のいずれかです：
 
-* An event name (e.g. "click" or "my-custom-event") followed by an event filter and a set of event modifiers
-* A polling definition of the form `every <timing declaration>`
-* A comma-separated list of such events
+* イベント名（"click "や "my-custom-event "など）の後に、イベントフィルタとイベント修飾子のセットを続けます。
+* ポーリング定義は、`every <タイミング宣言>`という形式
+* イベントのカンマ区切りのリスト
 
-### Standard Events
+### スタンダード・イベント
 
-A standard event, such as `click` can be specified as the trigger like so:
+`click`のような標準的なイベントをトリガーとして指定することができます：
 
 ```html
 <div hx-get="/clicked" hx-trigger="click">Click Me</div>
 ```
 
-#### Standard Event Filters
+#### 標準イベントフィルター
 
-Events can be filtered by enclosing a boolean javascript expression in square brackets after the event name.  If
-this expression evaluates to `true` the event will be triggered, otherwise it will be ignored.
+イベントをフィルタリングするには、イベント名の後に角括弧でブーリアン・ジャバスクリプト式を囲みます。この式が `true` と評価されるとイベントが発生し、そうでなければ無視されます。
 
 ```html
 <div hx-get="/clicked" hx-trigger="click[ctrlKey]">Control Click Me</div>
 ```
 
-This event will trigger if a click event is triggered with the `event.ctrlKey` property set to true.
+このイベントは、`event.ctrlKey`プロパティがtrueに設定されたクリックイベントがトリガーされた場合に発生します。
 
-Conditions can also refer to global functions or state
+条件は、グローバル関数や状態を参照することもできます。
 
 ```html
 <div hx-get="/clicked" hx-trigger="click[checkGlobalState()]">Control Click Me</div>
 ```
 
-And can also be combined using the standard javascript syntax
+また、標準的なjavascriptの構文を使って組み合わせることもできる。
 
 ```html
 <div hx-get="/clicked" hx-trigger="click[ctrlKey&&shiftKey]">Control-Shift Click Me</div>
 ```
 
-Note that all symbols used in the expression will be resolved first against the triggering event, and then next
-against the global namespace, so `myEvent[foo]` will first look for a property named `foo` on the event, then look
-for a global symbol with the name `foo`
+**Note** 式の中で使われているすべてのシンボルが、トリガーとなるイベントに対して最初に解決されます。つまり、`myEvent[foo]` はまずイベント上の `foo` という名前のプロパティを探し、次に `foo` という名前のグローバルシンボルを探します。
 
-#### Standard Event Modifiers
+#### 標準イベント修飾子
 
-Standard events can also have modifiers that change how they behave.  The modifiers are:
+標準的なイベントには、その振る舞いを変更するモディファイアを付けることもできる。修飾子は以下の通りです：
 
-* `once` - the event will only trigger once (e.g. the first click)
-* `changed` - the event will only change if the value of the element has changed. Please pay attention `change` is the name of the event and `changed` is the name of the modifier.
-* `delay:<timing declaration>` - a delay will occur before an event triggers a request.  If the event
-is seen again it will reset the delay.
-* `throttle:<timing declaration>` - a throttle will occur after an event triggers a request. If the event
-is seen again before the delay completes, it is ignored, the element will trigger at the end of the delay.
-* `from:<Extended CSS selector>` - allows the event that triggers a request to come from another element in the document (e.g. listening to a key event on the body, to support hot keys)
-  * A standard CSS selector resolves to all elements matching that selector. Thus, `from:input` would listen on every input on the page.
-  * The extended CSS selector here allows for the following non-standard CSS values:
-    * `document` - listen for events on the document
-    * `window` - listen for events on the window
-    * `closest <CSS selector>` - finds the [closest](https://developer.mozilla.org/docs/Web/API/Element/closest) ancestor element or itself, matching the given css selector
-    * `find <CSS selector>` - finds the closest child matching the given css selector
-    * `next` resolves to [element.nextElementSibling](https://developer.mozilla.org/docs/Web/API/Element/nextElementSibling)
-    * `next <CSS selector>` scans the DOM forward for the first element that matches the given CSS selector.
-      (e.g. `next .error` will target the closest following sibling element with `error` class)
-    * `previous` resolves to [element.previousElementSibling](https://developer.mozilla.org/docs/Web/API/Element/previousElementSibling)
-    * `previous <CSS selector>` scans the DOM backwards for the first element that matches the given CSS selector.
-      (e.g `previous .error` will target the closest previous sibling with `error` class)
-* `target:<CSS selector>` - allows you to filter via a CSS selector on the target of the event.  This can be useful when you want to listen for
-triggers from elements that might not be in the DOM at the point of initialization, by, for example, listening on the body,
-but with a target filter for a child element
-* `consume` - if this option is included the event will not trigger any other htmx requests on parents (or on elements
-  listening on parents)
-* `queue:<queue option>` - determines how events are queued if an event occurs while a request for another event is in flight.  Options are:
-  * `first` - queue the first event
-  * `last` - queue the last event (default)
-  * `all` - queue all events (issue a request for each event)
-  * `none` - do not queue new events
+* `once` - イベントが一度だけトリガーされる(例えば最初のクリック)
+* `changed` - 要素の値が変更された場合のみイベントが変更されます。`change`はイベントの名前、`changed`はモディファイアの名前であることに注意してください。
+* `delay:<timing declaration>` - イベントがリクエストをトリガーする前に遅延が発生する。そのイベントが再び現れると、遅延はリセットされる。
+* `throttle:<timing declaration>` - スロットルはイベントがリクエストをトリガーした後に発生します。ディレイが完了する前にイベントが再び現れた場合、それは無視され、ディレイの最後にエレメントがトリガーされます。
+* `from:<Extended CSS selector>` - リクエストのトリガーとなるイベントが、ドキュメント内の別の要素から来るようにする (例えば、ホットキーをサポートするために、ボディ上のキーイベントをリッスンする)
+  * 標準的なCSSセレクタは、そのセレクタにマッチするすべての要素を解決する。したがって、`from:input`はページ上のすべての入力をリッスンすることになる。
+  * ここでの拡張CSSセレクタは、以下の非標準CSS値を許容する：
+    * `document` - ドキュメントのイベントを待機
+    * `window` - ウィンドウのイベントを待機
+    * `closest <CSS selector>` - 与えられたcssセレクタにマッチする、[最も近い](https://developer.mozilla.org/docs/Web/API/Element/closest)祖先要素、またはそれ自身を見つけます。
+    * `find <CSS selector>` - 与えられたcssセレクタに最も近い子を見つけます
+    * `next` [element.nextElementSibling](https://developer.mozilla.org/docs/Web/API/Element/nextElementSibling)を解決します。
+    * `next <CSS selector>` 与えられた CSS セレクタにマッチする最初の要素を DOM 前方から探します。(例: `next .error` は `error` クラスを持つ最も近い兄弟要素をターゲットにします)
+    * `previous` [element.previousElementSibling](https://developer.mozilla.org/docs/Web/API/Element/previousElementSibling)を解決します。
+    * `previous <CSS selector>` 与えられた CSS セレクタにマッチする最初の要素を DOM を後方にスキャンします。(例: `previous .error` は `error` クラスを持つ最も近い兄弟要素をターゲットにします)
+* `target:<CSS selector>` - イベントのターゲットをCSSセレクタでフィルタリングできる。これは、初期化の時点でDOMにない要素からのトリガーをリッスンしたい場合に便利です。例えば、ボディをリスニングしているが、子要素をターゲット・フィルターとするなど。
+* `consume` - このオプションが含まれる場合、イベントは親に対する (あるいは親をリッスンしている要素に対する) 他の htmx リクエストをトリガーしません。
+* `queue:<queue option>` - 別のイベントのリクエストが処理中にイベントが発生した場合に、イベントがどのようにキューに入れられるかを決定する。オプションは以下の通り：
+  * `first` - 最初のイベントをキューに入れる
+  * `last` - 最後のイベントをキューに入れる（デフォルト）
+  * `all` - すべてのイベントをキューに入れる（イベントごとにリクエストを発行する）
+  * `none` - 新しいイベントをキューに入れない
 
-Here is an example of a search box that searches on `keyup`, but only if the search value has changed
-and the user hasn't typed anything new for 1 second:
+以下は、`keyup`で検索する検索ボックスの例であるが、検索値が変更され、ユーザーが1秒間何も新しいものを入力していない場合にのみ検索する：
 
 ```html
 <input name="q"
@@ -87,23 +75,21 @@ and the user hasn't typed anything new for 1 second:
        hx-target="#search-results"/>
 ```
 
-The response from the `/search` url will be appended to the `div` with the id `search-results`.
+検索結果のレスポンスは `/search` url の `div` に `search-results` という id で追加されます。
 
-### Non-standard Events
+### 非標準イベント
 
-There are some additional non-standard events that htmx supports:
+htmxがサポートする非標準のイベントもいくつかある：
 
-* `load` - triggered on load (useful for lazy-loading something)
-* `revealed` - triggered when an element is scrolled into the viewport (also useful for lazy-loading). If you are using `overflow` in css like `overflow-y: scroll` you should use `intersect once` instead of `revealed`.
-* `intersect` - fires once when an element first intersects the viewport.  This supports two additional options:
-    * `root:<selector>` - a CSS selector of the root element for intersection
-    * `threshold:<float>` - a floating point number between 0.0 and 1.0, indicating what amount of intersection to fire the event on
+* `load` - ロード時にトリガーされる（何かをダラダラロードするのに便利）
+* `revealed` - 要素がビューポートにスクロールされたときにトリガーされます（遅延ロードにも便利です）。css で `overflow` を `overflow-y: scroll` のように使う場合は、`revealed` の代わりに `intersect once` を使うべきです。
+* `intersect` - 要素が最初にビューポートと交差したときに一度だけ発生する。これは2つの追加オプションをサポートしています：
+    * `root:<selector>` - 交差するルート要素のCSSセレクタ
+    * `threshold:<float>` - 0.0から1.0の間の浮動小数点数で、どの程度の交差点でイベントを発生させるかを示します。
 
-### Triggering via the `HX-Trigger` header
+### `HX-Trigger`ヘッダーによるトリガー
 
-If you're trying to fire an event from <code>HX-Trigger</code> response  header, you will likely want to
-use the `from:body` modifier.  E.g. if you send a header like this <code>HX-Trigger: my-custom-event</code>
-with a response, an element would likely need to look like this:
+`<code>HX-Trigger</code>`レスポンスヘッダからイベントを発生させようとしている場合、`from:body`モディファイアを使いたいでしょう。  例えば、`<code>HX-Trigger: my-custom-event</code>`のようなヘッダをレスポンスと一緒に送信する場合、要素は次のようになります：
 
 ```html
   <div hx-get="/example" hx-trigger="my-custom-event from:body">
@@ -111,14 +97,13 @@ with a response, an element would likely need to look like this:
   </div>
 ```
 
-in order to fire.
+順番に発射する
 
-This is because the header will likely trigger the event in a different DOM hierarchy than the element that you
-wish to be triggered.  For a similar reason, you will often listen for hot keys from the body.
+これは、ヘッダーが、トリガーさせたい要素とは異なるDOM階層でイベントをトリガーする可能性が高いためです。同様の理由で、ボディからのホットキーをリッスンすることもよくある。
 
-### Polling
+### ポーリング
 
-By using the syntax `every <timing declaration>` you can have an element poll periodically:
+`every<timing declaration>`という構文を使うことで、エレメントに定期的にポーリングさせることができる：
 
 ```html
 <div hx-get="/latest_updates" hx-trigger="every 1s">
@@ -126,10 +111,9 @@ By using the syntax `every <timing declaration>` you can have an element poll pe
 </div>
 ```
 
-This example will issue a `GET` to the `/latest_updates` URL every second and swap the results into
-the innerHTML of this div.
+この例では、毎秒 `/latest_updates` URL に `GET` を発行し、その結果をこの div の innerHTML に入れ替えます。
 
-If you want to add a filter to polling, it should be added *after* the poll declaration:
+ポーリングにフィルタを追加したい場合は、ポーリング宣言の後に追加する必要があります：
 
 ```html
 <div hx-get="/latest_updates" hx-trigger="every 1s [someConditional]">
@@ -137,20 +121,23 @@ If you want to add a filter to polling, it should be added *after* the poll decl
 </div>
 ```
 
-### Multiple Triggers
+### 複数のトリガー
 
-Multiple triggers can be provided, separated by commas.  Each trigger gets its own options.
+複数のトリガーをカンマで区切って指定することができる。それぞれのトリガーは独自のオプションを持ちます。
+
 ```html
   <div hx-get="/news" hx-trigger="load, click delay:1s"></div>
 ```
-This example will load `/news` immediately on page load, and then again with a delay of one second after each click.
 
-### Via JavaScript
+この例では、`/news`はページロード時に即座にロードされ、クリックされるたびに1秒遅れて再度ロードされる。
 
-The AJAX request can be triggered via JavaScript [`htmx.trigger()`](@/api.md#trigger), too.
+### JavaScript経由
 
-## Notes
+AJAXリクエストはJavaScript [`htmx.trigger()`](@/api.md#trigger) でもトリガーできる。
 
-* `hx-trigger` is not inherited
-* `hx-trigger` can be used without an AJAX request, in which case it will only fire the `htmx:trigger` event
-* In order to pass a CSS selector that contains whitespace (e.g. `form input`) to the `from`- or `target`-modifier, surround the selector in parentheses or curly brackets (e.g. `from:(form input)` or `from:nearest (form input)`)
+## メモ
+
+* `hx-trigger` は継承されない。
+* `hx-trigger`はAJAXリクエストなしで使うことができ、その場合は`htmx:trigger`イベントのみが発生する。
+* 空白を含む CSS セレクタ (例 `form input`) を `from`- または `target` 修飾子に指定します。合格するためには、セレクタを括弧で囲む（例：`from:(フォーム入力)`、`from:nearest (フォーム入力)`）。
+

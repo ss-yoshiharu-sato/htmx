@@ -2,8 +2,7 @@
 title = "hx-post"
 +++
 
-The `hx-post` attribute will cause an element to issue a `POST` to the specified URL and swap
-the HTML into the DOM using a swap strategy:
+`hx-post` 属性は、指定された URL に `POST` を送信し、交換条件設定を使って HTML を DOM で書き換えます：
 
 ```html
 <button hx-post="/account/enable" hx-target="body">
@@ -11,13 +10,12 @@ the HTML into the DOM using a swap strategy:
 </button>
 ```
 
-This example will cause the `button` to issue a `POST` to `/account/enable` and swap the returned HTML into
- the `innerHTML` of the `body`.
+この例では、`button` に `/account/enable` への `POST` を発行させ、返された HTML を `body` の `innerHTML` に入れ替えます。
  
-## Notes
+## メモ
 
-* `hx-post` is not inherited
-* You can control the target of the swap using the [hx-target](@/attributes/hx-target.md) attribute
-* You can control the swap strategy by using the [hx-swap](@/attributes/hx-swap.md) attribute
-* You can control what event triggers the request with the [hx-trigger](@/attributes/hx-trigger.md) attribute
-* You can control the data submitted with the request in various ways, documented here: [Parameters](@/docs.md#parameters)
+* `hx-post` は継承されない
+* [hx-target](@/attributes/hx-target.md)属性を使ってスワップのターゲットをコントロールできます。
+* [hx-swap](@/attributes/hx-swap.md)属性を使って、交換条件設定を制御することができます。
+* [hx-trigger](@/attributes/hx-trigger.md)属性で、リクエストのトリガーとなるイベントを制御できます。
+* リクエストと共に送信されるデータは、様々な方法でコントロールすることができます：[Parameters](@/docs.md#parameters)

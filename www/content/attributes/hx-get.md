@@ -2,23 +2,20 @@
 title = "hx-get"
 +++
 
-The `hx-get` attribute will cause an element to issue a `GET` to the specified URL and swap
-the HTML into the DOM using a swap strategy:
+`hx-get`属性は、指定されたURLに `GET` を発行し、スワップストラテジーを使ってHTMLをDOMにスワップします：
 
 ```html
   <div hx-get="/example">Get Some HTML</div>
 ```
 
-This example will cause the `div` to issue a `GET` to `/example` and swap the returned HTML into
- the `innerHTML` of the `div`.
+この例では、`div` に `/example` への `GET` を発行させ、返された HTML を `div` の `innerHTML` に入れ替えます。
 
-### Notes
+### メモ
 
-* `hx-get` is not inherited
-* By default `hx-get` does not include any parameters.  You can use the [hx-params](@/attributes/hx-params.md)
-  attribute to change this
-* You can control the target of the swap using the [hx-target](@/attributes/hx-target.md) attribute
-* You can control the swap strategy by using the [hx-swap](@/attributes/hx-swap.md) attribute
-* You can control what event triggers the request with the [hx-trigger](@/attributes/hx-trigger.md) attribute
-* You can control the data submitted with the request in various ways, documented here: [Parameters](@/docs.md#parameters)
-* An empty `hx-get:""` will make a get request to the current url and will swap the current HTML page 
+* `hx-get` は継承されない
+* デフォルトでは `hx-get` はパラメータを返しません。これを変更するには、[hx-params](@/attributes/hx-params.md) 属性を使います。
+* [hx-target](@/attributes/hx-target.md)属性を使ってスワップのターゲットをコントロールできます。
+* [hx-swap](@/attributes/hx-swap.md)属性を使って、スワップストラテジーを制御することができます。
+* [hx-trigger](@/attributes/hx-trigger.md)属性で、リクエストのトリガーとなるイベントを制御できます。
+* リクエストと共に送信されるデータは、様々な方法でコントロールすることができます：[Parameters](@/docs.md#parameters)
+* 空の `hx-get:""` は現在の url に get リクエストを行い、現在の HTML ページを入れ替えます。 

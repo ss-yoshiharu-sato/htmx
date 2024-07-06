@@ -2,10 +2,9 @@
 title = "hx-select"
 +++
 
-The `hx-select` attribute allows you to select the content you want swapped from a response.  The value of
-this attribute is a CSS query selector of the element or elements to select from the response.
+`hx-select` 属性は、レスポンスからスワップさせたい内容を選択することができます。この属性の値は、レスポンスから選択する要素の CSS クエリセレクタです。
 
-Here is an example that selects a subset of the response content:
+以下は、応答内容のサブセットを選択する例です。：
 
 ```html
 <div>
@@ -15,9 +14,8 @@ Here is an example that selects a subset of the response content:
 </div>
 ```
 
-So this button will issue a `GET` to `/info` and then select the element with the id `info-detail`,
-which will replace the entire button in the DOM.
+このボタンは`/info`に対して`GET`を発行し、`info-detail`というidを持つ要素を選択します。これはDOM内のボタン全体を置き換えます。
 
 ## Notes
 
-* `hx-select` is inherited and can be placed on a parent element
+* `hx-select` は継承され、親要素に置くことができる。

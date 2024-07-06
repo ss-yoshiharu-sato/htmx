@@ -2,24 +2,18 @@
 title = "hx-target"
 +++
 
-The `hx-target` attribute allows you to target a different element for swapping than the one issuing the AJAX
-request.  The value of this attribute can be:
+`hx-target`属性は、AJAXリクエストを発行する要素とは異なる要素をスワップの対象とすることができます。この属性の値には:
 
-* A CSS query selector of the element to target.
-* `this` which indicates that the element that the `hx-target` attribute is on is the target.
-* `closest <CSS selector>` which will find the [closest](https://developer.mozilla.org/docs/Web/API/Element/closest)
-  ancestor element or itself, that matches the given CSS selector
-  (e.g. `closest tr` will target the closest table row to the element).
-* `find <CSS selector>` which will find the first child descendant element that matches the given CSS selector.
-* `next` which resolves to [element.nextElementSibling](https://developer.mozilla.org/docs/Web/API/Element/nextElementSibling)
-* `next <CSS selector>` which will scan the DOM forward for the first element that matches the given CSS selector.
-  (e.g. `next .error` will target the closest following sibling element with `error` class)
-* `previous` which resolves to [element.previousElementSibling](https://developer.mozilla.org/docs/Web/API/Element/previousElementSibling)
-* `previous <CSS selector>` which will scan the DOM backwards for the first element that matches the given CSS selector.
-  (e.g `previous .error` will target the closest previous sibling with `error` class)
+* 対象とする要素のCSSクエリーセレクタ。
+* `this`は `hx-target` 属性が指定された要素がターゲットであることを示します。
+* 最も近い`<CSSセレクタ>`は、与えられたCSSセレクタにマッチする[最も近い](https://developer.mozilla.org/docs/Web/API/Element/closest)祖先要素またはそれ自身を見つけます(例えば、`closest tr`は要素に最も近いテーブル行をターゲットにします)。
+* `find <CSS selector>`は、与えられたCSSセレクタにマッチする最初の子の子孫要素を見つける。
+* `next`は、[element.nextElementSibling](https://developer.mozilla.org/docs/Web/API/Element/nextElementSibling)に解決する。
+* `next <CSS selector>` は、与えられた CSS セレクタにマッチする最初の要素を探すために DOM を前方にスキャンします。(例: `next .error` は `error` クラスを持つ最も近い兄弟要素をターゲットにします)
+* `previous` は、[element.previousElementSibling](https://developer.mozilla.org/docs/Web/API/Element/previousElementSibling)に解決される。
+* `previous <CSS selector>` は、与えられた CSS セレクタにマッチする最初の要素を探すために DOM を後方にスキャンします。(例: `previous .error` は `error` クラスを持つ最も近い兄弟要素をターゲットにします)
 
-
-Here is an example that targets a div:
+divをターゲットにした例です：
 
 ```html
 <div>
@@ -30,13 +24,14 @@ Here is an example that targets a div:
 </div>
 ```
 
-The response from the `/register` url will be appended to the `div` with the id `response-div`.
+URL `/register` からのレスポンスは `response-div` という id で `div` に追加されます。
 
-This example uses `hx-target="this"` to make a link that updates itself when clicked:
+この例では、`hx-target="this"`を使って、クリックされると自動的に更新されるリンクを作っています：
+
 ```html
 <a hx-post="/new-link" hx-target="this" hx-swap="outerHTML">New link</a>
 ```
 
-## Notes
+## メモ
 
-* `hx-target` is inherited and can be placed on a parent element
+* `hx-target` は継承され、親要素に置くことができます。

@@ -2,11 +2,10 @@
 title = "hx-select-oob"
 +++
 
-The `hx-select-oob` attribute allows you to select content from a response to be swapped in via an out-of-band swap.  
-The value of this attribute is comma separated list of elements to be swapped out of band.  This attribute is almost
-always paired with [hx-select](@/attributes/hx-select.md).
+`hx-select-oob`属性は、帯域外スワップでスワップする内容をレスポンスから選択することができます。 
+この属性の値は、カンマで区切られた、帯域を入れ替える要素のリストです。この属性は、ほとんどの場合[hx-select](@/attributes/hx-select.md)と対になっています。
 
-Here is an example that selects a subset of the response content:
+以下は、応答内容のサブセットを選択する例である：
 
 ```html
 <div>
@@ -20,14 +19,11 @@ Here is an example that selects a subset of the response content:
 </div>
 ```
 
-This button will issue a `GET` to `/info` and then select the element with the id `info-details`,
-which will replace the entire button in the DOM, and, in addition, pick out an element with the id `alert` 
-in the response and swap it in for div in the DOM with the same ID.
+このボタンは `/info` に対して `GET` を発行し、`info-details` という id を持つ要素を選択する。これはDOM内のボタン全体を置き換え、さらにレスポンス内のid `alert`を持つ要素をピックアップし、DOM内の同じidを持つdivと入れ替えます。
 
-Each value in the comma separated list of values can specify any valid [`hx-swap`](@/attributes/hx-swap.md)
-strategy by separating the selector and the swap strategy with a `:`.
+カンマで区切られた値のリストの各値は、セレクタとスワップ戦略を `:` で区切ることで、有効な [`hx-swap`](@/attributes/hx-swap.md) 戦略を指定することができます。
 
-For example, to prepend the alert content instead of replacing it:
+例えば、アラートの内容を置き換えるのではなく、前置きにする：
 
 ```html
 <div>
@@ -41,6 +37,6 @@ For example, to prepend the alert content instead of replacing it:
 </div>
 ```
 
-## Notes
+## メモ
 
-* `hx-select-oob` is inherited and can be placed on a parent element
+* `hx-select-oob` は継承され、親要素に置くことができます。
