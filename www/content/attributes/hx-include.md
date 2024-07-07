@@ -2,21 +2,16 @@
 title = "hx-include"
 +++
 
-The `hx-include` attribute allows you to include additional element values in an AJAX request. The value of this
-attribute can be:
+`hx-include` 属性を使うと、AJAXリクエストに追加要素の値を含めることができます。この属性の値は:
 
-* A CSS query selector of the elements to include.
-* `this` which will include the descendants of the element.
-* `closest <CSS selector>` which will find the [closest](https://developer.mozilla.org/docs/Web/API/Element/closest)
-  ancestor element or itself, that matches the given CSS selector
-  (e.g. `closest tr` will target the closest table row to the element).
-* `find <CSS selector>` which will find the first child descendant element that matches the given CSS selector.
-* `next <CSS selector>` which will scan the DOM forward for the first element that matches the given CSS selector.
-  (e.g. `next .error` will target the closest following sibling element with `error` class)
-* `previous <CSS selector>` which will scan the DOM backwards for the first element that matches the given CSS selector.
-  (e.g `previous .error` will target the closest previous sibling with `error` class)
+* 含める要素のCSSクエリーセレクタ。
+* `this`は要素の子孫を含む。
+* `closest <CSS selector>` 与えられたCSSセレクタにマッチする[最も近い](https://developer.mozilla.org/docs/Web/API/Element/closest)祖先要素またはそれ自身を見つけます(例えば、`closest tr`は要素に最も近いテーブル行をターゲットにします)。
+* `find <CSS selector>` 指定された CSS セレクタにマッチする最初の子要素を探します。
+* `next <CSS selector>` 与えられた CSS セレクタにマッチする最初の要素を探すために DOM を前方にスキャンします。(例: `next .error` は `error` クラスを持つ最も近い兄弟要素をターゲットにします)
+* `previous <CSS selector>` 与えられた CSS セレクタにマッチする最初の要素を探すために DOM を後方にスキャンします。(例: `previous .error` は `error` クラスを持つ最も近い兄弟要素をターゲットにします)
 
-Here is an example that includes a separate input value:
+別の入力値を含む例を示す：
 
 ```html
 <div>
@@ -27,16 +22,15 @@ Here is an example that includes a separate input value:
 </div>
 ```
 
-This is a little contrived as you would typically enclose both of these elements in a `form` and submit
-the value automatically, but it demonstrates the concept.
+通常、これらの要素を`form`で囲み、自動的に値を送信するので、これは少し作為的ですが、概念を示しています。
 
-Note that if you include a non-input element, all input elements enclosed in that element will be included.
+非入力要素を含めると、その要素で囲まれたすべての入力要素が含まれることに注意してください。
 
-## Notes
+## メモ
 
-* `hx-include` is inherited and can be placed on a parent element
-* While `hx-include` is inherited, it is evaluated from the element triggering the request. It is easy to get confused
-  when working with the extended selectors such as `find` and `closest`.
+* `hx-include` は継承され、親要素に置くことができる。
+* `hx-include` は継承されますが、リクエストのトリガーとなる要素から評価されます。`find`や`closest`のような拡張セレクタを使うと混乱しがちです。
+
   ```html
   <div hx-include="find input">
       <button hx-post="/register">
@@ -45,9 +39,5 @@ Note that if you include a non-input element, all input elements enclosed in tha
       Enter email: <input name="email" type="email"/>
   </div>
   ```
-  In the above example, when clicking on the button, the `find input` selector is resolved from the button itself, which
-  does not return any element here, since the button doesn't have any `input` child, thus in this case, raises an error.
-* A standard CSS selector resolves
-  to [document.querySelectorAll](https://developer.mozilla.org/docs/Web/API/Document/querySelectorAll) and will include
-  multiple elements, while the extended selectors such as `find` or `next` only return a single element at most to
-  include
+  上の例では、ボタンをクリックすると、`find input` セレクタがボタン自体から解決されますが、ボタンには `input` の子要素がないため、この場合はエラーになります。
+* 標準的なCSSセレクタは[document.querySelectorAll](https://developer.mozilla.org/docs/Web/API/Document/querySelectorAll)に解決され、複数の要素を含めますが、`find`や`next`のような拡張セレクタは最大でも1つの要素しか返しません。

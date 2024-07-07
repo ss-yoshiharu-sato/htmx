@@ -2,20 +2,18 @@
 title = "hx-vals"
 +++
 
-The `hx-vals` attribute allows you to add to the parameters that will be submitted with an AJAX request.  
+`hx-vals`属性は、AJAXリクエストで送信されるパラメータに追加することができます。  
 
-By default, the value of this attribute is a list of name-expression values in [JSON (JavaScript Object Notation)](https://www.json.org/json-en.html) 
-format.
+デフォルトでは、この属性の値は[JSON（JavaScript Object Notation）](https://www.json.org/json-en.html)形式の名前式値のリストです。
 
-If you wish for `hx-vals` to *evaluate* the values given, you can prefix the values with `javascript:` or `js:`.
+もし `hx-vals` が与えられた値を *評価* したい場合は、値の前に `javascript:` または `js:` を付けます。
 
 ```html
-  <div hx-get="/example" hx-vals='{"myVal": "My Value"}'>Get Some HTML, Including A Value in the Request</div>
-
-  <div hx-get="/example" hx-vals='js:{myVal: calculateValue()}'>Get Some HTML, Including a Dynamic Value from Javascript in the Request</div>
+  <div hx-get="/example" hx-vals='{"myVal": "My Value"}'>リクエストに値を含めてHTMLを取得する</div>
+  <div hx-get="/example" hx-vals='js:{myVal: calculateValue()}'>リクエストにJavascriptから動的な値を含むHTMLを取得する</div>
 ```
 
-When using evaluated code you can access the `event` object. This example includes the value of the last typed key within the input.
+評価されたコードを使うと、`event` オブジェクトにアクセスできる。この例では、入力の中で最後にタイプされたキーの値を含んでいる。
 
 ```html
   <div hx-get="/example" hx-trigger="keyup" hx-vals='js:{lastKey: event.key}'>
@@ -23,15 +21,13 @@ When using evaluated code you can access the `event` object. This example includ
   </div>
 ```
 
-## Security Considerations
+## セキュリティへの配慮
 
-* By default, the value of `hx-vals` must be valid [JSON](https://developer.mozilla.org/en-US/docs/Glossary/JSON). 
-  It is **not** dynamically computed.  If you use the `javascript:` prefix, be aware that you are introducing
-  security considerations, especially when dealing with user input such as query strings or user-generated content, 
-  which could introduce a [Cross-Site Scripting (XSS)](https://owasp.org/www-community/attacks/xss/) vulnerability. 
+* デフォルトでは、`hx-vals`の値は有効な[JSON](https://developer.mozilla.org/en-US/docs/Glossary/JSON)でなければならない。
+  動的に計算されることは**ありません**。接頭辞`javascript:`を使用する場合、特にクエリー文字列やユーザーが生成したコンテンツのようなユーザー入力を扱う際に、[クロスサイトスクリプティング(XSS)](https://owasp.org/www-community/attacks/xss/)の脆弱性を引き起こす可能性があることを認識してください。
 
-## Notes
+## メモ
 
-* `hx-vals` is inherited and can be placed on a parent element.
-* A child declaration of a variable overrides a parent declaration.
-* Input values with the same name will be overridden by variable declarations.
+* `hx-vals`は継承され、親要素に置くことができる。
+* 変数の子宣言は親宣言を上書きする。
+* 同じ名前の入力値は、変数宣言によって上書きされる。

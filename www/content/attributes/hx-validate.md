@@ -2,11 +2,10 @@
 title = "hx-validate"
 +++
 
-The `hx-validate` attribute will cause an element to validate itself by way of the [HTML5 Validation API](@/docs.md#validation)
-before it submits a request.
+`hx-validate`属性は、リクエストを送信する前に、[HTML5 Validation API](@/docs.md#validation)によって要素自身を検証させます。
 
-Only `<form>` elements validate data by default, but other elements do not. Adding `hx-validate="true"` to `<input>`, `<textarea>` or `<select>` enables validation before sending requests.
+デフォルトでは `<form>` 要素だけがデータを検証しますが、他の要素は検証しません。`hx-validate="true"`を `<input>`、`<textarea>`、`<select>` に追加すると、リクエストを送信する前にデータを検証することができます。
 
 ## Notes
 
-* `hx-validate` is not inherited
+* `hx-validate` は継承されない

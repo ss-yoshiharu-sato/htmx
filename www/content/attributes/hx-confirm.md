@@ -2,10 +2,9 @@
 title = "hx-confirm"
 +++
 
-The `hx-confirm` attribute allows you to confirm an action before issuing a request.  This can be useful
-in cases where the action is destructive and you want to ensure that the user really wants to do it.
+`hx-confirm` 属性はリクエストを発行する前にアクションを確認することができます。これは、アクションが破壊的で、ユーザーが本当にそのアクションを実行したいのかを確認したい場合に便利です。
 
-Here is an example:
+例を挙げよう：
 
 ```html
 <button hx-delete="/account" hx-confirm="Are you sure you wish to delete your account?">
@@ -13,16 +12,16 @@ Here is an example:
 </button>
 ```
 
-## Event details
+## イベント詳細
 
-The event triggered by `hx-confirm` contains additional properties in its `detail`:
+`hx-confirm` によってトリガーされるイベントは、その `detail` に追加のプロパティを含む：
 
-* triggeringEvent: the event that triggered the original request
-* issueRequest(skipConfirmation=false): a callback which can be used to confirm the AJAX request
-* question: the value of the `hx-confirm` attribute on the HTML element
+* triggeringEvent: 元のリクエストのトリガーとなったイベント
+* issueRequest(skipConfirmation=false): AJAXリクエストを確認するために使用できるコールバック。
+* question: HTML要素の `hx-confirm` 属性の値。
 
-## Notes
+## メモ
 
-* `hx-confirm` is inherited and can be placed on a parent element
-* `hx-confirm` uses the browser's `window.confirm` by default. You can customize this behavior as shown [in this example](@/examples/confirm.md).
-* a boolean `skipConfirmation` can be passed to the `issueRequest` callback; if true (defaults to false), the `window.confirm` will not be called and the AJAX request is issued directly
+* `hx-confirm` は継承され、親要素に置くことができる。
+* デフォルトでは `hx-confirm` はブラウザの `window.confirm` を使用します。[この例](@/examples/confirm.md)に示すように、カスタマイズすることができます。
+* `issueRequest`コールバックに `skipConfirmation` というブール値を渡すことができる。; trueの場合（デフォルトはfalse）、`window.confirmation`は呼び出されず、AJAXリクエストが直接発行されます。

@@ -2,28 +2,26 @@
 title = "hx-sync"
 +++
 
-The `hx-sync` attribute allows you to synchronize AJAX requests between multiple elements.
+`hx-sync` 属性を使うと、複数の要素間で AJAX リクエストを同期させることができます。
 
-The `hx-sync` attribute consists of a CSS selector to indicate the element to synchronize on, followed optionally
-by a colon and then by an optional syncing strategy.  The available strategies are:
+`hx-sync` 属性は同期する要素を示す CSS セレクタで構成され、その後にコロンが続き、オプションで同期戦略を指定します。利用可能なストラテジーは以下の通りです：
 
-* `drop` - drop (ignore) this request if an existing request is in flight (the default)
-* `abort` - drop (ignore) this request if an existing request is in flight, and, if that is not the case, 
-            *abort* this request if another request occurs while it is still in flight
-* `replace` - abort the current request, if any, and replace it with this request
-* `queue` - place this request in the request queue associated with the given element
+* `drop` - 既存のリクエストが飛行中であれば、このリクエストを落とす (無視する) (デフォルト)
+* `abort` - 既存のリクエストが飛行中であれば、このリクエストをドロップ（無視）し、そうでない場合は、飛行中に別のリクエストが発生した場合、このリクエストを*中止*する。
+* `replace` - 現在のリクエストがあれば中止し、このリクエストに置き換える。
+* `queue` - このリクエストを、与えられたエレメントに関連付けられたリクエストキューに入れる。
 
-The `queue` modifier can take an additional argument indicating exactly how to queue:
+`queue`修飾子には、どのようにキューに入れるかを示す追加の引数を取ることができる：
 
-* `queue first` - queue the first request to show up while a request is in flight
-* `queue last` - queue the last request to show up while a request is in flight
-* `queue all` - queue all requests that show up while a request is in flight
+* `queue first` - リクエストの飛行中に表示される最初のリクエストをキューに入れる
+* `queue last` - リクエストの飛行中に最後に表示されたリクエストをキューに入れる
+* `queue all` - リクエストの飛行中に表示されるすべてのリクエストをキューに入れる
 
-## Notes
+## メモ
 
-* `hx-sync` is inherited and can be placed on a parent element
+* `hx-sync` は継承され、親要素に置くことができる。
 
-This example resolves a race condition between a form's submit request and an individual input's validation request. Normally, without using `hx-sync`, filling out the input and immediately submitting the form triggers two parallel requests to `/validate` and `/store`. Using `hx-sync="closest form:abort"` on the input will watch for requests on the form and abort the input's request if a form request is present or starts while the input request is in flight.
+この例では、フォームの送信リクエストと個々の入力の検証リクエストの間の競合状態を解決します。通常、`hx-sync` を使用しないと、入力フォームに入力してすぐに送信すると、`/validate` と `/store` への2つのリクエストが並行して実行されます。`hx-sync="closeform:abort"`を入力に使用すると、フォーム上のリクエストを監視し、フォームリクエストが存在するか、入力リクエストが処理中に開始された場合、入力のリクエストを中断します。
 
 ```html
 <form hx-post="/store">
@@ -35,7 +33,7 @@ This example resolves a race condition between a form's submit request and an in
 </form>
 ```
 
-If you'd rather prioritize the validation request over the submit request, you can use the `drop` strategy. This example will prioritize the validation request over the submit request so that if a validation request is in flight, the form cannot be submitted.
+送信リクエストよりもバリデーションリクエストを優先させたい場合は、`drop` 戦略を使用します。この例では、バリデーションリクエストを送信リクエストよりも優先させ、バリデーションリクエストが送信中である場合はフォームを送信できないようにします。
 
 ```html
 <form hx-post="/store">
@@ -48,7 +46,7 @@ If you'd rather prioritize the validation request over the submit request, you c
 </form>
 ```
 
-When dealing with forms that contain many inputs, you can prioritize the submit request over all input validation requests using the hx-sync `replace` strategy on the form tag. This will cancel any in-flight validation requests and issue only the `hx-post="/store"` request. If you'd rather abort the submit request and prioritize any existing validation requests you can use the `hx-sync="this:abort"` strategy on the form tag.
+多くの入力を含むフォームを扱う場合、フォームタグの hx-sync `replace` ストラテジーを使って、すべての入力検証リクエストよりも送信リクエストを優先させることができます。これにより、実行中のバリデーションリクエストはすべてキャンセルされ、`hx-post="/store"`リクエストだけが発行されます。送信リクエストを中止して既存のバリデーションリクエストを優先したい場合は、フォームタグの `hx-sync="this:abort"` 戦略を使用します。
 
 ```html
 <form hx-post="/store" hx-sync="this:replace">
@@ -57,7 +55,7 @@ When dealing with forms that contain many inputs, you can prioritize the submit 
 </form>
 ```
 
-When implementing active search functionality the hx-trigger attribute's `delay` modifier can be used to debounce the user's input and avoid making multiple requests while the user types. However, once a request is made, if the user begins typing again a new request will begin even if the previous one has not finished processing. This example will cancel any in-flight requests and use only the last request. In cases where the search input is contained within the target, then using `hx-sync` like this also helps reduce the chances that the input will be replaced while the user is still typing.
+アクティブ検索機能を実装する場合、hx-trigger 属性の `delay` 修飾子を使用することで、ユーザの入力をデバウンスし、ユーザがタイプしている間に複数のリクエストが行われるのを避けることができます。しかし、一度リクエストが行われると、ユーザーが再び入力を始めると、前のリクエストが処理を終えていなくても新しいリクエストが始まります。この例では、進行中のリクエストはすべてキャンセルされ、最後のリクエストのみが使用されます。検索入力がターゲット内に含まれている場合、このように `hx-sync` を使用することで、ユーザーが入力中に入力が置き換えられてしまう可能性を減らすこともできます。
 
 ```html
 <input type="search" 

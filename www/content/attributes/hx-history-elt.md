@@ -2,14 +2,9 @@
 title = "hx-history-elt"
 +++
 
-The `hx-history-elt` attribute allows you to specify the element that will be used to snapshot and
-restore page state during navigation.  By default, the `body` tag is used.  This is typically
-good enough for most setups, but you may want to narrow it down to a child element.  Just make
-sure that the element is always visible in your application, or htmx will not be able to restore
-history navigation properly.
+`hx-history-elt`属性は、ナビゲーション中にページの状態をスナップショットしたり復元したりするために使用する要素を指定することができます。デフォルトでは `body`タグが使用されます。ほとんどのセットアップではこれで十分ですが、子要素に絞りたい場合もあるでしょう。しかし、子要素に絞り込むこともできます。ただ、その要素がアプリケーションで常に表示されていることを確認してください。
 
-
-Here is an example:
+例を挙げよう：
 
 ```html
 <html>
@@ -21,7 +16,7 @@ Here is an example:
 </html>
 ```
 
-## Notes
+## メモ
 
-* `hx-history-elt` is not inherited
-* In most cases we don't recommend narrowing the history snapshot
+* `hx-history-elt` は継承されない。
+* ほとんどの場合、ヒストリーのスナップショットを絞り込むことはお勧めしない。

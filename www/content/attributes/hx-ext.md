@@ -2,19 +2,17 @@
 title = "hx-ext"
 +++
 
-The `hx-ext` attribute enables an htmx [extension](https://extensions.htmx.org) for an element and all its children.
+`hx-ext` 属性は、要素とそのすべての子要素に対して htmx [extension](https://extensions.htmx.org) を有効にします。
 
-The value can be a single extension name or a comma separated list of extensions to apply.
+値には、単一の拡張子名、または適用する拡張子のコンマ区切りリストを指定できる。
 
-The `hx-ext` tag may be placed on parent elements if you want a plugin to apply to an entire swath of the DOM,
-and on the `body` tag for it to apply to all htmx requests.
+`hx-ext`タグは、プラグインをDOM全体に適用させたい場合は親要素に、すべてのhtmxリクエストに適用させたい場合は`body`タグに置くことができます。
 
 ## Notes
 
-* `hx-ext` is both inherited and merged with parent elements, so you can specify extensions on any element in the DOM 
-hierarchy and it will apply to all child elements. 
+* `hx-ext`は親要素に継承されマージされるので、DOM階層のどの要素でも拡張機能を指定することができ、すべての子要素に適用されます。
 
-* You can ignore an extension that is defined by a parent node using `hx-ext="ignore:extensionName"` 
+* `hx-ext="ignore:extensionName"`を使うと、親ノードで定義されている拡張子を無視することができます。
 
 
 ```html

@@ -2,14 +2,13 @@
 title = "hx-preserve"
 +++
 
-The `hx-preserve` attribute allows you to keep an element unchanged during HTML replacement.
-Elements with `hx-preserve` set are preserved by `id` when htmx updates any ancestor element.
-You *must* set an unchanging `id` on elements for `hx-preserve` to work.
-The response requires an element with the same `id`, but its type and other attributes are ignored.
+`hx-preserve`属性は、HTMLの置換時に要素を変更しないようにします。
+`hx-preserve` が設定されている要素は、htmx が祖先要素を更新したときに `id` によって保存される。
+`hx-preserve` が動作するためには、要素に不変の `id` を設定する*必要があります*。
+レスポンスは同じ `id` を持つ要素を必要とするが、その型と他の属性は無視される。
 
-Note that some elements cannot unfortunately be preserved properly, such as `<input type="text">` (focus and caret position are lost), iframes or certain types of videos. To tackle some of these cases we recommend the [morphdom extension](https://github.com/bigskysoftware/htmx-extensions/blob/main/src/morphdom-swap/README.md), which does a more elaborate DOM
-reconciliation.
+注 `<input type="text">`（フォーカスとキャレットの位置が失われる）、iframe、ある種の動画など、残念ながら適切に保存できない要素もあります。このようなケースに対処するには、[morphdom extension](https://github.com/bigskysoftware/htmx-extensions/blob/main/src/morphdom-swap/README.md) をお勧めします。これはより精巧な DOMreconciliation を行います。
 
-## Notes
+## メモ
 
-* `hx-preserve` is not inherited
+* `hx-preserve` は継承されない

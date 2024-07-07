@@ -2,22 +2,21 @@
 title = "hx-params"
 +++
 
-The `hx-params` attribute allows you to filter the parameters that will be submitted with an AJAX request.  
+`hx-params`属性は、AJAXリクエストと一緒に送信されるパラメータをフィルタリングすることができます。  
 
-The possible values of this attribute are:
+この属性で取り得る値は以下の通り：
 
-* `*` - Include all parameters (default)
-* `none` - Include no parameters
-* `not <param-list>` - Include all except the comma separated list of parameter names
-* `<param-list>` - Include all the comma separated list of parameter names
+* `*` - すべてのパラメータを含む（デフォルト）
+* `none` - パラメータを含まない
+* `not <param-list>` - コンマで区切られたパラメータ名のリスト以外を含む
+* `<param-list>` - コンマで区切られたパラメータ名のリストをすべて含める
 
 ```html
   <div hx-get="/example" hx-params="*">Get Some HTML, Including Params</div>
 ```
 
-This div will include all the parameters that a `POST` would, but they will be URL encoded
-and included in the URL, as per usual with a `GET`.
+このdivは`POST`と同じようにすべてのパラメータを含みますが、通常の`GET`と同じようにURLエンコードされてURLに含まれます。
 
-## Notes
+## メモ
 
-* `hx-params` is inherited and can be placed on a parent element
+* `hx-params` は継承され、親要素に置くことができる。

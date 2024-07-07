@@ -2,13 +2,12 @@
 title = "hx-encoding"
 +++
 
-The `hx-encoding` attribute allows you to switch the request encoding from the usual `application/x-www-form-urlencoded`
-encoding to `multipart/form-data`, usually to support file uploads in an ajax request.
+`hx-encoding` 属性はリクエストのエンコーディングを通常の `application/x-www-form-urlencoded` エンコーディングから `multipart/form-data` エンコーディングに切り替えることができます。
 
-The value of this attribute should be `multipart/form-data`.
+この属性の値は `multipart/form-data` でなければならない。
 
-The `hx-encoding` tag may be placed on parent elements.
+`hx-encoding` タグは親要素に置くことができる。
 
-## Notes
+## メモ
 
-* `hx-encoding` is inherited and can be placed on a parent element
+* `hx-encoding` は継承され、親要素に置くことができる。

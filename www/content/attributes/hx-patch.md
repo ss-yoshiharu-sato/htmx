@@ -2,8 +2,7 @@
 title = "hx-patch"
 +++
 
-The `hx-patch` attribute will cause an element to issue a `PATCH` to the specified URL and swap
-the HTML into the DOM using a swap strategy:
+`hx-patch` 属性は、指定された URL に `PATCH` を発行し、スワップ戦略を使って HTML を DOM にスワップします：
 
 ```html
 <button hx-patch="/account" hx-target="body">
@@ -11,13 +10,12 @@ the HTML into the DOM using a swap strategy:
 </button>
 ```
 
-This example will cause the `button` to issue a `PATCH` to `/account` and swap the returned HTML into
- the `innerHTML` of the `body`.
+この例では、`button` が `/account` に対して `PATCH` を発行し、返された HTML を `body` の `innerHTML` に入れ替えます。
  
-## Notes
+## メモ
 
-* `hx-patch` is not inherited
-* You can control the target of the swap using the [hx-target](@/attributes/hx-target.md) attribute
-* You can control the swap strategy by using the [hx-swap](@/attributes/hx-swap.md) attribute
-* You can control what event triggers the request with the [hx-trigger](@/attributes/hx-trigger.md) attribute
-* You can control the data submitted with the request in various ways, documented here: [Parameters](@/docs.md#parameters)
+* `hx-patch` は継承されない
+* [hx-target](@/attributes/hx-target.md)アトリビュートを使ってスワップのターゲットをコントロールできます。
+* [hx-swap](@/attributes/hx-swap.md)属性を使って、スワップ戦略を制御することができます。
+* [hx-trigger](@/attributes/hx-trigger.md)属性で、リクエストのトリガーとなるイベントを制御できます。
+* リクエストと共に送信されるデータは、様々な方法でコントロールすることができます：[パラメータ](@/docs.md#parameters)

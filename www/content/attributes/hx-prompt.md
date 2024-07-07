@@ -2,10 +2,9 @@
 title = "hx-prompt"
 +++
 
-The `hx-prompt` attribute allows you to show a prompt before issuing a request.  The value of
-the prompt will be included in the request in the `HX-Prompt` header.
+`hx-prompt` 属性を使うと、リクエストを発行する前にプロンプトを表示することができます。プロンプトの値は `HX-Prompt` ヘッダとしてリクエストに含まれます。
 
-Here is an example:
+例を挙げよう：
 
 ```html
 <button hx-delete="/account" hx-prompt="Enter your account name to confirm deletion">
@@ -13,6 +12,6 @@ Here is an example:
 </button>
 ```
 
-## Notes
+## メモ
 
-* `hx-prompt` is inherited and can be placed on a parent element
+* `hx-prompt` は継承され、親要素に置くことができます。

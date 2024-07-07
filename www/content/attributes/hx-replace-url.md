@@ -2,16 +2,15 @@
 title = "hx-replace-url"
 +++
 
-The `hx-replace-url` attribute allows you to replace the current url of the browser [location history](https://developer.mozilla.org/en-US/docs/Web/API/History_API).
+`hx-replace-url`属性はブラウザの[ロケーション履歴](https://developer.mozilla.org/en-US/docs/Web/API/History_API)の現在のurlを置き換えることができます。
 
-The possible values of this attribute are:
+この属性で取り得る値は以下の通り：
 
-1. `true`, which replaces the fetched URL in the browser navigation bar.
-2. `false`, which disables replacing the fetched URL if it would otherwise be replaced due to inheritance.
-3. A URL to be replaced into the location bar.
-   This may be relative or absolute, as per [`history.replaceState()`](https://developer.mozilla.org/en-US/docs/Web/API/History/replaceState).
+1. `true`を指定すると、ブラウザのナビゲーションバーで取得したURLが置き換えられる。
+2. `false`を指定すると、取得したURLが継承によって置換される場合、その置換を無効にする。
+3. ロケーションバーに置き換えるURL。これは、[`history.replaceState()`](https://developer.mozilla.org/en-US/docs/Web/API/History/replaceState)に従って、相対的であっても絶対的であっても構いません。
 
-Here is an example:
+例を挙げよう：
 
 ```html
 <div hx-get="/account" hx-replace-url="true">
@@ -19,9 +18,9 @@ Here is an example:
 </div>
 ```
 
-This will cause htmx to snapshot the current DOM to `localStorage` and replace the URL `/account' in the browser location bar.
+これにより、htmxは現在のDOMを`localStorage`にスナップショットし、ブラウザのロケーションバーにあるURL `/account' を置き換える。
 
-Another example:
+別の例を挙げよう：
 
 ```html
 <div hx-get="/account" hx-replace-url="/account/home">
@@ -29,12 +28,11 @@ Another example:
 </div>
 ```
 
-This will replace the URL `/account/home' in the browser location bar.
+これはブラウザのロケーションバーにあるURL「/account/home」を置き換える。
 
-## Notes
+## メモ
 
-* `hx-replace-url` is inherited and can be placed on a parent element
-* The [`HX-Replace-Url` response header](@/headers/hx-replace-url.md) has similar behavior and can override this attribute.
-* The [`hx-history-elt` attribute](@/attributes/hx-history-elt.md) allows changing which element is saved in the history cache.
-* The [`hx-push-url` attribute](@/attributes/hx-push-url.md) is a similar and more commonly used attribute, which creates a 
-  new history entry rather than replacing the current one.
+* `hx-replace-url` は継承され、親要素に置くことができる。
+* [`HX-Replace-Url`レスポンスヘッダ](@/headers/hx-replace-url.md)も同様の動作をし、この属性をオーバーライドすることができます。
+* [`hx-history-elt`属性](@/attributes/hx-history-elt.md)は、履歴キャッシュに保存する要素を変更することができます。
+* [`hx-push-url`属性](@/attributes/hx-push-url.md)は類似した、より一般的に使用される属性で、現在の履歴を置き換えるのではなく、新しい履歴エントリを作成します。

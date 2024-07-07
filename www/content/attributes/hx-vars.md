@@ -2,23 +2,22 @@
 title = "hx-vars"
 +++
 
-**NOTE: `hx-vars` has been deprecated in favor of [`hx-vals`](@/attributes/hx-vals.md), which is safer by default.**
+**注: `hx-vars` は非推奨となり、[`hx-vals`](@/attributes/hx-vals.md) の方がデフォルトでは安全です。**
 
-The `hx-vars` attribute allows you to dynamically add to the parameters that will be submitted with an AJAX request.  
+`hx-vars`属性は、AJAXリクエストで送信されるパラメータに動的に追加することができます。  
 
-The value of this attribute is a comma separated list of `name`:`<expression>` values, the same as the internal
-syntax of javascript [Object Literals](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Grammar_and_types#Object_literals).
+この属性の値はカンマで区切られた `name`:`<expression>` 値のリストで、javascript [Object Literals](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Grammar_and_types#Object_literals) の内部構文と同じです。
 
 ```html
   <div hx-get="/example" hx-vars="myVar:computeMyVar()">Get Some HTML, Including A Dynamic Value in the Request</div>
 ```
 
-## Security Considerations
+## セキュリティへの配慮
 
-* The expressions in `hx-vars` are dynamically computed which allows you to add JavaScript code that will be executed. Be careful to **never** trust user input in your expressions as this may lead to a [Cross-Site Scripting (XSS)](https://owasp.org/www-community/attacks/xss/) vulnerability. If you are dealing with user input such as query strings or user-generated content, consider using [hx-vals](@/attributes/hx-vals.md) which is a safer alternative.
+* `hx-vars`の式は動的に計算されるので、実行されるJavaScriptコードを追加することができます。これは[クロスサイトスクリプティング(XSS)](https://owasp.org/www-community/attacks/xss/)の脆弱性につながる可能性があります。クエリー文字列やユーザー生成コンテンツのようなユーザー入力を扱う場合は、[hx-vals](@/attributes/hx-vals.md)を使うことを検討してください。
 
-## Notes
+## メモ
 
-* `hx-vars` is inherited and can be placed on a parent element.
-* A child declaration of a variable overrides a parent declaration.
-* Input values with the same name will be overridden by variable declarations.
+* `hx-vars`は継承され、親要素に置くことができる。
+* 変数の子宣言は親宣言を上書きする。
+* 同じ名前の入力値は、変数宣言によって上書きされる。

@@ -2,25 +2,24 @@
 title = "hx-headers"
 +++
 
-The `hx-headers` attribute allows you to add to the headers that will be submitted with an AJAX request.  
+`hx-headers`属性は、AJAXリクエストと一緒に送信されるヘッダに追加することができます。  
 
-By default, the value of this attribute is a list of name-expression values in [JSON (JavaScript Object Notation)](https://www.json.org/json-en.html) 
-format.
+デフォルトでは、この属性の値は[JSON（JavaScript Object Notation）](https://www.json.org/json-en.html)形式の名前式値のリストです。
 
-If you wish for `hx-headers` to *evaluate* the values given, you can prefix the values with `javascript:` or `js:`.
+もし `hx-headers` に与えられた値を*評価*させたい場合は、値の前に `javascript:` または `js:` を付けることができます。
 
 ```html
-  <div hx-get="/example" hx-headers='{"myHeader": "My Value"}'>Get Some HTML, Including A Custom Header in the Request</div>
+  <div hx-get="/example" hx-headers='{"myHeader": "My Value"}'>
+    リクエストにカスタムヘッダーを含むHTMLを取得する
+  </div>
 ```
 
-## Security Considerations
+## セキュリティへの配慮
 
-* By default, the value of `hx-headers` must be valid [JSON](https://developer.mozilla.org/en-US/docs/Glossary/JSON). 
-  It is **not** dynamically computed.  If you use the `javascript:` prefix, be aware that you are introducing
-  security considerations, especially when dealing with user input such as query strings or user-generated content, 
-  which could introduce a [Cross-Site Scripting (XSS)](https://owasp.org/www-community/attacks/xss/) vulnerability. 
+* デフォルトでは、`hx-headers`の値は有効な[JSON](https://developer.mozilla.org/en-US/docs/Glossary/JSON)でなければならない。 
+  動的に計算されることはありません。`javascript:`接頭辞を使用する場合、特にクエリー文字列やユーザーが生成したコンテンツのようなユーザー入力を扱う際に、[クロスサイトスクリプティング(XSS)](https://owasp.org/www-community/attacks/xss/)の脆弱性を引き起こす可能性があることを認識してください。
 
-## Notes
+## メモ
 
-* `hx-headers` is inherited and can be placed on a parent element.
-* A child declaration of a header overrides a parent declaration.
+* `hx-headers` は継承され、親要素に配置することができる。
+* ヘッダーの子宣言は親宣言を上書きする。

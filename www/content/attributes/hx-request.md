@@ -2,13 +2,13 @@
 title = "hx-request"
 +++
 
-The `hx-request` attribute allows you to configure various aspects of the request via the following attributes:
+`hx-request`属性では、以下の属性を使ってリクエストの様々な側面を設定することができます：
  
-* `timeout` - the timeout for the request, in milliseconds
-* `credentials` - if the request will send credentials
-* `noHeaders` - strips all headers from the request
+* `timeout` - リクエストのタイムアウトをミリ秒単位で指定します。
+* `credentials` - リクエストがクレデンシャルを送信する場合
+* `noHeaders` - リクエストからすべてのヘッダを取り除く
 
-These attributes are set using a JSON-like syntax:
+これらの属性は、JSONのような構文を使って設定される：
 
 ```html
 <div ... hx-request='{"timeout":100}'>
@@ -16,7 +16,7 @@ These attributes are set using a JSON-like syntax:
 </div>
 ```
 
-You may make the values dynamically evaluated by adding the `javascript:` or `js:` prefix:
+接頭辞に `javascript:` または `js:` を付けることで、値を動的に評価することができます：
 
 ```html
 <div ... hx-request='js: timeout:getTimeoutSetting() '>
@@ -26,4 +26,4 @@ You may make the values dynamically evaluated by adding the `javascript:` or `js
 
 ## Notes
 
-* `hx-request` is merge-inherited and can be placed on a parent element
+* `hx-request`はマージ継承され、親要素に置くことができる。

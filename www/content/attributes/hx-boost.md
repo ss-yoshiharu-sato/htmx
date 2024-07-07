@@ -2,21 +2,13 @@
 title = "hx-boost"
 +++
 
-The `hx-boost` attribute allows you to "boost" normal anchors and form tags to use AJAX instead.  This
-has the [nice fallback](https://en.wikipedia.org/wiki/Progressive_enhancement) that, if the user does not 
-have javascript enabled, the site will continue to work.
+`hx-boost`属性は、通常のアンカーやフォームタグの代わりにAJAXを使用するように"ブースト"することができます。これには[nice fallback](https://en.wikipedia.org/wiki/Progressive_enhancement)があり、もしユーザーがjavascriptを有効にしていなくても、サイトは動作し続けます。
 
-For anchor tags, clicking on the anchor will issue a `GET` request to the url specified in the `href` and
-will push the url so that a history entry is created.  The target is the `<body>` tag, and the `innerHTML`
-swap strategy is used by default.  All of these can be modified by using the appropriate attributes, except
-the `click` trigger.
+アンカータグの場合、アンカーをクリックすると `href` で指定された url に対して `GET` リクエストが発行され、その url がプッシュされてヒストリエントリが作成されます。  ターゲットは `<body>` タグであり、デフォルトでは `innerHTML` が使用される。`click`トリガーを除いて、これらはすべて適切な属性を使用して変更することができる。
 
-For forms the request will be converted into a `GET` or `POST`, based on the method in the `method` attribute
-and will be triggered by a `submit`.  Again, the target will be the `body` of the page, and the `innerHTML`
-swap will be used. The url will _not_ be pushed, however, and no history entry will be created. (You can use the 
-[hx-push-url](@/attributes/hx-push-url.md) attribute if you want the url to be pushed.)
+フォームの場合、リクエストは `method` 属性のメソッドに基づいて `GET` または `POST` に変換され、`submit` がトリガーされる。この場合も、ターゲットはページの `body` となり、 `innerHTML` スワップが使用される。しかし、urlはプッシュされず、ヒストリエントリも作成されません。(urlをプッシュさせたい場合は、[hx-push-url](@/attributes/hx-push-url.md) 属性を使うことができます)。
 
-Here is an example of some boosted links:
+以下はブーストリンクの例である：
 
 ```html
 <div hx-boost="true">
@@ -24,9 +16,9 @@ Here is an example of some boosted links:
   <a href="/page2">Go To Page 2</a>
 </div>
 ```
-These links will issue an ajax `GET` request to the respective URLs and replace the body's inner content with it.
+これらのリンクは、それぞれのURLに対してajax `GET` リクエストを発行し、ボディの内部コンテンツをそれに置き換えます。
 
-Here is an example of a boosted form:
+以下は、ブーストされたフォームの例である：
 
 ```html
 <form hx-boost="true" action="/example" method="post">
@@ -34,14 +26,13 @@ Here is an example of a boosted form:
     <button>Submit</button>
 </form>
 ```
-This form will issue an ajax `POST` to the given URL and replace the body's inner content with it.
+このフォームは指定された URL に対して ajax `POST` を発行し、body の内部コンテンツをそれに置き換えます。
 
+## メモ
 
-## Notes
-
-* `hx-boost` is inherited and can be placed on a parent element
-* Only links that are to the same domain and that are not local anchors will be boosted
-* All requests are done via AJAX, so keep that in mind when doing things like redirects
-* To find out if the request results from a boosted anchor or form, look for [`HX-Boosted`](@/reference.md#request_headers) in the request header
-* Selectively disable boost on child elements with `hx-boost="false"`
-* Disable the replacement of elements via boost, and their children, with [`hx-preserve="true"`](@/attributes/hx-preserve.md)
+* `hx-boost` は継承され、親要素に置くことができる。
+* 同じドメインへのリンクで、ローカルアンカーでないリンクのみがブーストされる。
+* すべてのリクエストはAJAX経由で行われるため、リダイレクトなどを行う際にはその点に留意すること。
+* ブーストされたアンカーやフォームからのリクエストかどうかを調べるには、リクエストヘッダで[`HX-Boosted`](@/reference.md#request_headers)を探します。
+* `hx-boost="false"`で子要素のブーストを選択的に無効にする。
+* [`hx-preserve="true"`](@/attributes/hx-preserve.md)を使って、boostによる要素の置換とその子要素の置換を無効にする。

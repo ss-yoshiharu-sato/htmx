@@ -2,23 +2,18 @@
 title = "hx-disabled-elt"
 +++
 
-The `hx-disabled-elt` attribute allows you to specify elements that will have the `disabled` attribute
-added to them for the duration of the request. The value of this attribute can be:
+この属性の値には、`hx-disabled-elt` 属性は、リクエストの間 `disabled` 属性が追加される要素を指定することができます。この属性の値は:
 
-* A CSS query selector of the element to disable.
-* `this` to disable the element itself
-* `closest <CSS selector>` which will find the [closest](https://developer.mozilla.org/docs/Web/API/Element/closest)
-  ancestor element or itself, that matches the given CSS selector
-  (e.g. `closest fieldset` will disable the closest to the element `fieldset`).
-* `find <CSS selector>` which will find the first child descendant element that matches the given CSS selector
-* `next` which resolves to [element.nextElementSibling](https://developer.mozilla.org/docs/Web/API/Element/nextElementSibling)
-* `next <CSS selector>` which will scan the DOM forward for the first element that matches the given CSS selector
-  (e.g. `next button` will disable the closest following sibling `button` element)
-* `previous` which resolves to [element.previousElementSibling](https://developer.mozilla.org/docs/Web/API/Element/previousElementSibling)
-* `previous <CSS selector>` which will scan the DOM backwards for the first element that matches the given CSS selector.
-  (e.g `previous input` will disable the closest previous sibling `input` element)
+* 無効にする要素のCSSクエリーセレクタ
+* `this`で要素自体を無効にする
+* 最も近い`<CSSセレクタ>`は、与えられたCSSセレクタにマッチする[最も近い](https://developer.mozilla.org/docs/Web/API/Element/closest)祖先要素またはそれ自身を見つけます(例えば、`最も近いfieldset`は、要素`fieldset`に最も近いものを無効にします)。
+* `find<CSSセレクタ>`は、与えられたCSSセレクタにマッチする最初の子要素を見つける。
+* `next` [element.nextElementSibling](https://developer.mozilla.org/docs/Web/API/Element/nextElementSibling)に解決する。
+* `next <CSS selector>` 与えられたCSSセレクタにマッチする最初の要素をDOMの前方にスキャンします（例えば、`next button`は、最も近い次の兄弟要素`button`を無効にします）。
+* `previous` [element.previousElementSibling](https://developer.mozilla.org/docs/Web/API/Element/previousElementSibling)で解決する。
+* `previous <CSS selector>` 与えられた CSS セレクタにマッチする最初の要素を探すために DOM を後方にスキャンします。(例: `previous input` は最も近い前の兄弟要素 `input` を無効にする)
 
-Here is an example with a button that will disable itself during a request:
+リクエストの間、それ自身を無効にするボタンの例です：
 
 ```html
 <button hx-post="/example" hx-disabled-elt="this">
@@ -26,10 +21,9 @@ Here is an example with a button that will disable itself during a request:
 </button>
 ```
 
-When a request is in flight, this will cause the button to be marked with [the `disabled` attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/disabled), 
-which will prevent further clicks from occurring.  
+リクエストが処理中であるとき、ボタンに[`disabled`属性](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/disabled)をつけ、それ以上クリックされないようにします。 
 
-The `hx-disabled-elt` attribute also supports specifying multiple CSS selectors separated by commas to disable multiple elements during the request. Here is an example that disables buttons and text input fields of a particular form during the request:
+`hx-disabled-elt` 属性は、リクエスト中に複数の要素を無効にするために、カンマで区切って複数の CSS セレクタを指定することもサポートしています。ここでは、リクエスト中に特定のフォームのボタンとテキスト入力フィールドを無効にする例を示します：
 
 ```html
 <form hx-post="/example" hx-disabled-elt="find input[type='text'], find button">
@@ -38,8 +32,8 @@ The `hx-disabled-elt` attribute also supports specifying multiple CSS selectors 
 </form>
 ```
 
-## Notes
+## メモ
 
-* `hx-disabled-elt` is inherited and can be placed on a parent element
+* `hx-disabled-elt` は継承され、親要素に置くことができる。
 
-[hx-trigger]: https://htmx.org/attributes/hx-trigger/
+\[hx-trigger]: https://htmx.org/attributes/hx-trigger/

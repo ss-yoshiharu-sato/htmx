@@ -2,11 +2,11 @@
 title = "hx-history"
 +++
 
-Set the `hx-history` attribute to `false` on any element in the current document, or any html fragment loaded into the current document by htmx, to prevent sensitive data being saved to the localStorage cache when htmx takes a snapshot of the page state. 
+`hx-history` 属性を `false` に設定することで、htmx がページ状態のスナップショットを取るときに、機密データが localStorage キャッシュに保存されるのを防ぐ。
 
-History navigation will work as expected, but on restoration the URL will be requested from the server instead of the history cache.
+履歴ナビゲーションは期待通りに機能しますが、復元時には履歴キャッシュの代わりにサーバーからURLがリクエストされます。
 
-Here is an example:
+例を挙げよう：
 
 ```html
 <html>
@@ -18,6 +18,6 @@ Here is an example:
 </html>
 ```
 
-## Notes
+## メモ
 
-* `hx-history="false"` can be present *anywhere* in the document to embargo the current page state from the history cache (i.e. even outside the element specified for the history snapshot [hx-history-elt](@/attributes/hx-history-elt.md)).
+* `hx-history="false"`は、現在のページの状態を履歴キャッシュから禁止するために、文書中の*どこにでも*存在させることができます(すなわち、履歴スナップショット[hx-history-elt](@/attributes/hx-history-elt.md)のために指定された要素の外側でさえも)。

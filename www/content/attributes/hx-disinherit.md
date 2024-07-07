@@ -2,19 +2,15 @@
 title = "hx-disinherit"
 +++
 
-The default behavior for htmx is to "inherit" many attributes automatically: that is, an attribute such as
-[hx-target](@/attributes/hx-target.md) may be placed on a parent element, and all child elements will inherit
-that target.
+htmxのデフォルトの動作は、多くの属性を自動的に「継承」します。: つまり、[hx-target](@/attributes/hx-target.md)のような属性が親要素に置かれ、すべての子要素はそのターゲットを継承します。
 
-The `hx-disinherit` attribute allows you to control this automatic attribute inheritance. An example scenario is to 
-allow you to place an `hx-boost` on the `body` element of a page, but overriding that behavior in a specific part
-of the page to allow for more specific behaviors.
+`hx-disinherit`属性はこの属性の自動継承を制御することができます。例えば、ページの `body` 要素に `hx-boost` を配置し、ページの特定の部分でその動作を上書きすることで、より特殊な動作をさせることができます。
 
-htmx evaluates attribute inheritance as follows:
+htmxは属性継承を次のように評価する：
 
-* when `hx-disinherit` is set on a parent node
-  * `hx-disinherit="*"` all attribute inheritance for this element will be disabled
-  * `hx-disinherit="hx-select hx-get hx-target"` disable inheritance for only one or multiple specified attributes
+* 親ノードに `hx-disinherit` が設定されている場合
+  * `hx-disinherit="*"` この要素の属性継承はすべて無効になる。
+  * `hx-disinherit="hx-select hx-get hx-target"` 指定した1つまたは複数の属性に対してのみ継承を無効にする。
 
 ```html
 <div hx-boost="true" hx-select="#content" hx-target="#content" hx-disinherit="*">
@@ -42,6 +38,6 @@ htmx evaluates attribute inheritance as follows:
 </div>
 ```
 
-## Notes
+## メモ
 
-* Read more about [Attribute Inheritance](@/docs.md#inheritance)
+* [属性継承](@/docs.md#inheritance)の続きを読む
